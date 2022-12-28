@@ -2,8 +2,14 @@ pub mod linear;
 
 use super::math::linear::*;
 
-pub fn adds() {
+pub fn factorial( ) {
 
-	let _x = Vec2::new();
+}
+
+pub fn fibonacci( ) {
+
+}
+
+pub fn map( ) {
 
 }
