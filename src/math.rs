@@ -1,7 +1,5 @@
 pub mod linear;
 
-use super::math::linear::*;
-
 pub fn factorial( ) {
 
 }
