@@ -1,19 +1,30 @@
 #[cfg(test)]
 mod vec2_tests {
+	use std::f64::consts::*;
 	use crate::math::*;
+	use Coordinates::*;
 
 	#[test]
 	fn it_works( ) {
-		/*let result = vector2::add(&2, &2 );
-		assert_eq!( result, 4 );*/
-		println!( "test" );
-		adds();
+		
+		// Test for random_unit function
+		let mut test = Vec2::random_unit( &(0.0..=TAU) );
+		test.swap_system( POLAR );
+		dbg!( &test );
+		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y <= TAU) );
+		
+		// Test for unit function
+		let mut test = Vec2::unit();
+		test.swap_system( POLAR );
+		dbg!( &test );
+		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y < 0.0000000001 ) );
+		
 	}
 }
 
 use rand::Rng;
-use std::cmp::Ordering;
 use std::ops::RangeInclusive;
+//use std::cmp::Ordering;
 
 /// # Coordinate System Enum
 #[derive(Copy, Clone, Debug, PartialEq)]
@@ -92,8 +103,7 @@ impl Vec2 {
 	
 	/// # dbg function
 	/// Prints debug information of self to terminal
-	pub fn dbg( &self, name: &str ) {
-		println!( "{name}: " );
+	pub fn dbg( &self ) {
 		dbg!( self );
 	}
 	
