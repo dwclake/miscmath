@@ -14,18 +14,7 @@ pub mod vec2
 {
 	use rand::Rng;
 	use std::cmp::Ordering;
-	use raylib::ffi::system;
 
-	/*pub fn add(left: &usize, right: &usize) -> usize {
-		let angle: f32 = 1.67;
-		let mut _x: Vec<usize> = Vec::new( );
-		_x.push(1);
-		_x.push( *left );
-		_x.push( *right );
-		_x.push(angle.cos() as usize );
-		_x.pop( );
-		left + right
-	}*/
 	#[derive(Debug)]
 	#[derive(PartialEq)]
 	enum Coordinates {
