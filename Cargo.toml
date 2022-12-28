@@ -1,5 +1,5 @@
 [package]
-name = "mathlib_rust"
+name = "mathlib"
 version = "0.1.0"
 authors = ["devonwebbR2K <devonwebb559@gmail.com>"]
 edition = "2021"

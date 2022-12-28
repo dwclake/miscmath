@@ -1,27 +1,3 @@
-#[cfg(test)]
-mod vec2_tests {
-	use std::f64::consts::*;
-	use crate::math::*;
-	use Coordinates::*;
-
-	#[test]
-	fn it_works( ) {
-		
-		// # Test for random_unit function
-		let mut test = Vec2::random_unit( &(0.0..=TAU) );
-		test.swap_system( POLAR );
-		dbg!( &test );
-		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y <= TAU) );
-		
-		// # Test for unit function
-		let mut test = Vec2::unit();
-		test.swap_system( POLAR );
-		dbg!( &test );
-		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y < 0.0000000001 ) );
-		
-	}
-}
-
 use rand::Rng;
 use std::ops::RangeInclusive;
 //use std::cmp::Ordering;
@@ -35,7 +11,7 @@ pub enum Coordinates {
 
 // Vec2 Struct
 #[derive(Debug)]
-pub struct Vec2{
+pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
 	pub system: Coordinates,
@@ -160,5 +136,28 @@ impl Vec2 {
 			self.x = self.x * theta.cos();
 			self.system = new_system;
 		}
+	}
+}
+
+#[cfg(test)]
+mod vec2_tests {
+	use std::f64::consts::*;
+	use crate::math::*;
+	use Coordinates::*;
+	
+	#[test]
+	fn it_works( ) {
+		
+		// # Test for random_unit function
+		let mut test = Vec2::random_unit( &(0.0..=TAU) );
+		test.swap_system( POLAR );
+		dbg!( &test );
+		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y <= TAU) );
+		
+		// # Test for unit function
+		let mut test = Vec2::unit();
+		test.swap_system( POLAR );
+		dbg!( &test );
+		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y < 0.0000000001 ) );
 	}
 }
