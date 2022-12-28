@@ -10,7 +10,7 @@ use crate::math::linear::Coordinates::*;
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
-	pub system: Coordinates,
+	system: Coordinates,
 }
 
 impl Vec2 {
