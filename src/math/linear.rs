@@ -13,7 +13,7 @@ mod vec2_tests {
 
 
 use rand::Rng;
-use std::cmp::Ordering;
+//use std::cmp::Ordering;
 
 #[derive(Debug)]
 #[derive(PartialEq)]

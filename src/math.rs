@@ -4,6 +4,6 @@ use super::math::linear::*;
 
 pub fn adds() {
 
-	let x = Vec2::new();
+	let _x = Vec2::new();
 
 }
