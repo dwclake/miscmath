@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod vec2_tests {
 	use std::f64::consts::*;
-	use crate::math::linear::vector::vec2::*;
+	use crate::math::linear::vector::vec2::Vec2;
 	use crate::math::linear::System::*;
 	
 	#[test]
