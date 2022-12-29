@@ -1,14 +1,13 @@
 #[cfg(test)]
 mod vec2_tests {
 	use std::f64::consts::*;
-	use crate::math::linear::vector::vec2::Vec2;
-	use crate::math::linear::System::*;
+	use crate::math::linear::{ System::*, vector::vec2::Vec2 };
 	
 	#[test]
 	fn it_works( ) {
 		
 		// # Test for random_unit function
-		let mut test = Vec2::random_unit( &(0.0..=TAU) );
+		let mut test = Vec2::random_unit( &( 0.0..=TAU ) );
 		test.swap_system( POLAR );
 		dbg!( &test );
 		assert!( ( test.x - 1.0 < 0.0000000001 ) && ( test.y <= TAU) );

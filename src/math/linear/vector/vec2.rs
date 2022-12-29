@@ -2,8 +2,7 @@ use rand::Rng;
 use std::ops::RangeInclusive;
 //use std::cmp::Ordering;
 
-use crate::math::linear::*;
-use crate::math::linear::System::*;
+use crate::math::linear::{ *, System::* };
 
 // Vec2 Struct
 #[derive(Debug)]
