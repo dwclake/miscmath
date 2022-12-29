@@ -3,14 +3,14 @@ use std::ops::RangeInclusive;
 //use std::cmp::Ordering;
 
 use crate::math::linear::*;
-use crate::math::linear::Coordinates::*;
+use crate::math::linear::System::*;
 
 // Vec2 Struct
 #[derive(Debug)]
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
-	system: Coordinates,
+	system: System,
 }
 
 impl Vec2 {
@@ -23,7 +23,7 @@ impl Vec2 {
 	
 	// create function
 	// Generates a new instance of Vec2 initialized to chosen values and returns it
-	pub fn create( x: &f64, y: &f64, system: &Coordinates ) -> Vec2 {
+	pub fn create( x: &f64, y: &f64, system: &System ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: *x,
 			y: *y,
@@ -35,7 +35,7 @@ impl Vec2 {
 	
 	// create_random function
 	// Generates a new instance of Vec2 initialized to random values in the range entered and returns it
-	pub fn create_random( range: &RangeInclusive<f64>, system: &Coordinates ) -> Vec2 {
+	pub fn create_random( range: &RangeInclusive<f64>, system: &System ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: rand::thread_rng().gen_range( range.clone() ),
 			y: rand::thread_rng().gen_range( range.clone() ),
@@ -115,7 +115,7 @@ impl Vec2 {
 	
 	// swap_system function
 	// Converts components from cartesian to polar coordinates, and vice versa
-	pub fn swap_system( &mut self, new_system: Coordinates ) {
+	pub fn swap_system( &mut self, new_system: System ) {
 		if self.system == POLAR && new_system == CARTESIAN {
 			
 			let x = self.x;

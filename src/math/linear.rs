@@ -3,7 +3,7 @@ pub mod matrix;
 
 // Coordinate System Enum
 #[derive(Copy, Clone, Debug, PartialEq)]
-pub enum Coordinates {
+pub enum System {
 	CARTESIAN,
 	POLAR,
 }

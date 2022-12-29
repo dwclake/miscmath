@@ -2,7 +2,7 @@
 mod vec2_tests {
 	use std::f64::consts::*;
 	use crate::math::linear::vector::vec2::*;
-	use crate::math::linear::Coordinates::*;
+	use crate::math::linear::System::*;
 	
 	#[test]
 	fn it_works( ) {
