@@ -63,8 +63,8 @@ impl Vec2 {
 	   Adds the components from the rhs Vec2 to the corresponding components of self */
 	pub fn add( &mut self, rhs: &Vec2 ) -> Vec2 {
 		let mut temp = Vec2::new( );
-		self.x = self.x + rhs.x;
-		self.y = self.y + rhs.y;
+		self.x += rhs.x;
+		self.y += rhs.y;
 		temp.x = self.x;
 		temp.y = self.y;
 		temp
@@ -79,15 +79,15 @@ impl Vec2 {
 	/* div function
 	   Divides the components of self by a scalar value rhs */
 	pub fn div( &mut self, rhs: &f64 ) {
-		self.x = self.x / rhs;
-		self.y = self.y / rhs;
+		self.x /= rhs;
+		self.y /= rhs;
 	}
 	
 	/* mul function
 	   Multiplies the components of self by a scalar value rhs */
 	pub fn mult( &mut self, rhs: &f64 ) {
-		self.x = self.x * rhs;
-		self.y = self.y * rhs;
+		self.x *= rhs;
+		self.y *= rhs;
 	}
 	
 	/* norm function
@@ -101,15 +101,15 @@ impl Vec2 {
 	/* rem function
 	   Sets the components of self to the remainder of scalar division by rhs */
 	pub fn rem( &mut self, rhs: &f64 ) {
-		self.x = self.x % rhs;
-		self.y = self.y % rhs;
+		self.x %= rhs;
+		self.y %= rhs;
 	}
 	
 	/* sub function
 	   Subtracts the components of the rhs Vec2 from the corresponding components of self */
 	pub fn sub( &mut self, rhs: &Vec2 ) {
-		self.x = self.x - rhs.x;
-		self.y = self.y - rhs.y;
+		self.x -= rhs.x;
+		self.y -= rhs.y;
 	}
 	
 	/* swap_system function
@@ -126,7 +126,7 @@ impl Vec2 {
 			
 			let theta = self.y;
 			self.y = self.x * self.y.sin();
-			self.x = self.x * theta.cos();
+			self.x *= theta.cos();
 			self.system = new_system;
 		}
 	}
