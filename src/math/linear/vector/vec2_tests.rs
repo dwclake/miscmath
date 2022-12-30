@@ -17,7 +17,7 @@ mod vec2_tests {
 		assert!( test1.x < 0.0000000001 && test1.y < 0.0000000001 );
 		
 		/* Test for random_unit function */
-		let mut test1 = Vec2::random_unit( &( 0.0..=TAU ) );
+		let mut test1 = Vec2::random_unit( &( 0.0..TAU ) );
 		test1.swap_system( POLAR );
 		dbg!( &test1 );
 		assert!( ( test1.x - 1.0 < 0.0000000001 ) && ( test1.y <= TAU) );

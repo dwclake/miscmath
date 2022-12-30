@@ -12,6 +12,8 @@ pub fn factorial( fac_num: usize ) -> usize {
 	}
 }
 
+/* fibonacci function
+   Prints out the fibonacci sequence up to the number of terms entered */
 pub fn fibonacci( ) {
 
 }

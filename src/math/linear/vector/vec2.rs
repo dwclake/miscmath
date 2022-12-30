@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::{ ops::RangeInclusive };
+use std::ops::Range;
 
 use crate::math::linear::{ *, System::* };
 
@@ -33,7 +33,7 @@ impl Vec2 {
 	
 	/* create_random function
 	   Generates a new instance of Vec2 initialized to random values in the range entered and returns it */
-	pub fn create_random( range: &RangeInclusive<f64>, system: &System ) -> Vec2 {
+	pub fn create_random( range: &Range<f64>, system: &System ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: rand::thread_rng().gen_range( range.clone() ),
 			y: rand::thread_rng().gen_range( range.clone() ),
@@ -53,7 +53,7 @@ impl Vec2 {
 	
 	/* random_unit function
 	   Generates a new instance of Vec2 initialized to a magnitude of 1 and a angle of random value in the range entered and returns it */
-	pub fn random_unit( range: &RangeInclusive<f64> ) -> Vec2 {
+	pub fn random_unit( range: &Range<f64> ) -> Vec2 {
 		let mut temp = Vec2::create( &1.0, &rand::thread_rng().gen_range( range.clone() ), &POLAR );
 		temp.swap_system( CARTESIAN );
 		temp
