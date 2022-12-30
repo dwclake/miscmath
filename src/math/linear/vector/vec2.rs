@@ -120,13 +120,10 @@ impl Vec2 {
 	
 	/* lerp function
 	   Linearly interpolates self with a passed in Vec2 */
-	pub fn lerp( &mut self, rhs: &Vec2, amt: f64 ) {
-		if amt <= 1.0 && amt >= 0.0 {
-			self.x = -( amt - 1.0 ) * self.x + ( amt * rhs.x );
-			self.y = -( amt - 1.0 ) * self.y + ( amt * rhs.y );
-		} else {
-			println!( "Interpolation amount passed in to function is not in the interval [0,1], so interpolation not calculated." );
-		}
+	pub fn lerp( &mut self, rhs: &Vec2, amt: UnitF ) {
+		
+		self.x = -( amt.value() - 1.0 ) * self.x + ( amt.value() * rhs.x );
+		self.y = -( amt.value() - 1.0 ) * self.y + ( amt.value() * rhs.y );
 	}
 	
 	/* mag function
