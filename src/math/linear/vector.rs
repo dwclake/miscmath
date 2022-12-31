@@ -1,8 +1,5 @@
 pub mod vec2;
 pub mod vec3;
-mod vec2_tests;
-mod vec3_tests;
-
 
 use super::*;
 

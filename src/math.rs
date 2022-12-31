@@ -25,3 +25,21 @@ pub fn map(input: f64, in_rng: Range<f64>, out_rng: Range<f64> ) -> f64 {
 		          / ( in_rng.end - in_rng.start ) )
 		          * ( input - in_rng.start )
 }
+
+#[cfg(test)]
+mod math_tests {
+	use super::*;
+	
+	#[test]
+	fn it_works( ) {
+		assert!( map(0.25, 0.0..1.0, 0.0..100.0 ) - 25.0 < 0.000000001 );
+		assert!( map(0.50, 0.0..1.0, 0.0..100.0 ) - 50.0 < 0.000000001 );
+		assert!( map(0.75, 0.0..1.0, 0.0..100.0 ) - 75.0 < 0.000000001 );
+		assert_eq!( factorial(0), 1 );
+		assert_eq!( factorial(1), 1 );
+		assert_eq!( factorial(2), 2 );
+		assert_eq!( factorial(3), 6 );
+		assert_eq!( factorial(4), 24 );
+		assert_eq!( factorial(5), 120 );
+	}
+}
