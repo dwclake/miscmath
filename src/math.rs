@@ -31,10 +31,18 @@ mod math_tests {
 	use super::*;
 	
 	#[test]
-	fn it_works( ) {
+	fn map_fn_tests( ) {
+		
+		/* Test for map function */
 		assert!( map(0.25, 0.0..1.0, 0.0..100.0 ) - 25.0 < 0.000000001 );
 		assert!( map(0.50, 0.0..1.0, 0.0..100.0 ) - 50.0 < 0.000000001 );
 		assert!( map(0.75, 0.0..1.0, 0.0..100.0 ) - 75.0 < 0.000000001 );
+	}
+	
+	#[test]
+	fn factorial_fn_tests( ) {
+		
+		/* Test for factorial function */
 		assert_eq!( factorial(0), 1 );
 		assert_eq!( factorial(1), 1 );
 		assert_eq!( factorial(2), 2 );
