@@ -1,4 +1,4 @@
-use mathlib::math::linear::{ System::*, vector::vec2::Vec2 };
+use math_lib::linear::{ System::*, vector::Vec2 };
 
 fn main() {
 	let x = Vec2::unit( );
