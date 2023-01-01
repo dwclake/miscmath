@@ -11,7 +11,7 @@ pub mod matrix;
 ///
 /// ```
 ///
-#[derive(Copy, Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, PartialOrd, PartialEq)]
 pub enum CoordSystem {
 	CARTESIAN,
 	POLAR,

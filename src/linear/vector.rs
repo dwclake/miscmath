@@ -16,7 +16,7 @@ use std::ops::Range;
 /// assert!( ( a.x < 0.0000000001 ) && ( a.y < 0.0000000001 ) );
 /// ```
 ///
-#[derive(Debug,PartialEq)]
+#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
