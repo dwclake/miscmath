@@ -6,4 +6,6 @@ fn main() {
 	
 	let y = Vec2::create( &0.5, &7.2, &POLAR );
 	dbg!( &y );
+	
+	dbg!( y == y );
 }
