@@ -1,8 +1,8 @@
-use rand::Rng;
-use std::ops::Range;
-
 use super::*;
 use super::CoordSystem::*;
+
+use rand::Rng;
+use std::ops::Range;
 
 /// A two dimensional mathematical vector
 ///
