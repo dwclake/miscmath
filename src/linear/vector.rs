@@ -73,10 +73,10 @@ impl Vec2 {
 	/// 
 	/// ```
 	///
-	pub fn create_random( range: &Range<f64>,   coord_system: &CoordSystem ) -> Vec2 {
+	pub fn create_random( range_x: &Range<f64>, range_y: &Range<f64>,   coord_system: &CoordSystem ) -> Vec2 {
 		let mut temp = Vec2 {
-			x: rand::thread_rng().gen_range( range.clone() ),
-			y: rand::thread_rng().gen_range( range.clone() ),
+			x: rand::thread_rng().gen_range( range_x.clone() ),
+			y: rand::thread_rng().gen_range( range_y.clone() ),
 			coord_system: *coord_system,
 		};
 		temp.swap_system( CARTESIAN );
