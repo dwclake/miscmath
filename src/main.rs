@@ -1,4 +1,4 @@
-use math_lib::{ CoordSystem::*, vector::Vec2 };
+use miscmath::{ CoordSystem::*, vector::Vec2 };
 
 fn main() {
 	let x = Vec2::unit( );

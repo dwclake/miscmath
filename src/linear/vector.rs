@@ -9,7 +9,7 @@ use std::ops::Range;
 /// # Examples
 ///
 /// ```
-/// use math_lib::linear::vector::Vec2;
+/// use miscmath::linear::vector::Vec2;
 ///
 /// let a = Vec2::new();
 ///
@@ -30,7 +30,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::vector::Vec2;
+	/// use miscmath::linear::vector::Vec2;
 	///
 	/// let a = Vec2::new();
 	///
@@ -46,7 +46,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
+	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let a = Vec2::create( &5.6, &7.2, &CARTESIAN );
 	///
@@ -105,7 +105,7 @@ impl Vec2 {
 	///
 	/// ```
 	/// use std::f64::consts::TAU;
-	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
+	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
 	/// a.swap_system( POLAR );
@@ -124,7 +124,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
+	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut b = Vec2::unit();
 	///
@@ -158,7 +158,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
+	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
 	/// let mut b = Vec2::unit();
@@ -255,7 +255,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2, UnitF };
+	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2, UnitF };
 	///
 	///	let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
 	/// let mut b = Vec2::unit();

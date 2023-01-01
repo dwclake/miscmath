@@ -1,6 +1,6 @@
-//! # Math Lib
+//! # Miscmath
 //!
-//! `math_lib` is a collection of general math functions
+//! `miscmath` is a collection of general math functions
 //! and linear algebra structures like vectors and matrices.
 
 pub mod linear;
@@ -13,7 +13,7 @@ use std::ops::Range;
 /// # Examples
 ///
 /// ```
-/// let a = math_lib::factorial(5);
+/// let a = miscmath::factorial(5);
 ///
 /// assert_eq!( a, 120 );
 /// ```
@@ -45,7 +45,7 @@ pub fn fibonacci( ) {
 /// # Examples
 ///
 /// ```
-/// let a = math_lib::map(0.25, 0.0..1.0, 0.0..100.0 );
+/// let a = miscmath::map(0.25, 0.0..1.0, 0.0..100.0 );
 ///
 /// assert!( ( a - 25.0 ) < 0.000000001 );
 /// ```

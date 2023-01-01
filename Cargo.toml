@@ -1,9 +1,9 @@
 [package]
-name = "math_lib"
-description = "math_lib is a collection of general math functions and linear algebra structures like vectors and matrices."
+name = "miscmath"
+description = "miscmath is a collection of general math functions and linear algebra structures like vectors and matrices."
 version = "0.1.0"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/devonwebbR2K/math_lib_rust"
+repository = "https://github.com/devonwebbR2K/miscmath"
 authors = ["devonwebbR2K <devonwebb559@gmail.com>"]
 edition = "2021"
 
