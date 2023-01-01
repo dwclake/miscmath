@@ -16,7 +16,7 @@ use std::ops::Range;
 /// assert!( ( a.x < 0.0000000001 ) && ( a.y < 0.0000000001 ) );
 /// ```
 ///
-#[derive(Debug)]
+#[derive(Debug,PartialEq)]
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
@@ -77,7 +77,7 @@ impl Vec2 {
 		let mut temp = Vec2 {
 			x: rand::thread_rng().gen_range( range.clone() ),
 			y: rand::thread_rng().gen_range( range.clone() ),
-			  coord_system: *coord_system,
+			coord_system: *coord_system,
 		};
 		temp.swap_system( CARTESIAN );
 		temp

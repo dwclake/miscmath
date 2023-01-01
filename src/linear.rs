@@ -27,6 +27,7 @@ pub enum CoordSystem {
 ///
 /// ```
 ///
+#[derive(Copy, Clone, Debug, PartialEq)]
 pub struct UnitF {
 	value: f64,
 }
