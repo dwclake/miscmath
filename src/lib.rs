@@ -4,6 +4,7 @@
 //! and linear algebra structures like vectors and matrices.
 
 pub mod linear;
+pub use crate::linear::{CoordSystem, UnitF, vector,  matrix};
 
 use std::ops::Range;
 
@@ -12,9 +13,9 @@ use std::ops::Range;
 /// # Examples
 ///
 /// ```
-/// let test = math_lib::factorial(5);
+/// let a = math_lib::factorial(5);
 ///
-/// assert_eq!( test, 120 );
+/// assert_eq!( a, 120 );
 /// ```
 ///
 pub fn factorial( fac_num: usize ) -> usize {
@@ -44,9 +45,9 @@ pub fn fibonacci( ) {
 /// # Examples
 ///
 /// ```
-/// let test = math_lib::map(0.25, 0.0..1.0, 0.0..100.0 );
+/// let a = math_lib::map(0.25, 0.0..1.0, 0.0..100.0 );
 ///
-/// assert!( test - 25.0 < 0.000000001 );
+/// assert!( ( a - 25.0 ) < 0.000000001 );
 /// ```
 ///
 pub fn map(input: f64, in_rng: Range<f64>, out_rng: Range<f64> ) -> f64 {

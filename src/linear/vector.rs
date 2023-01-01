@@ -2,7 +2,7 @@ use rand::Rng;
 use std::ops::Range;
 
 use super::*;
-use super::System::*;
+use super::CoordSystem::*;
 
 /// A two dimensional mathematical vector
 ///
@@ -11,16 +11,16 @@ use super::System::*;
 /// ```
 /// use math_lib::linear::vector::Vec2;
 ///
-/// let test1 = Vec2::new();
+/// let a = Vec2::new();
 ///
-/// assert!( test1.x < 0.0000000001 && test1.y < 0.0000000001 );
+/// assert!( ( a.x < 0.0000000001 ) && ( a.y < 0.0000000001 ) );
 /// ```
 ///
 #[derive(Debug)]
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
-	system: System,
+	coord_system: CoordSystem,
 }
 
 impl Vec2 {
@@ -32,13 +32,13 @@ impl Vec2 {
 	/// ```
 	/// use math_lib::linear::vector::Vec2;
 	///
-	/// let test1 = Vec2::new();
+	/// let a = Vec2::new();
 	///
-	/// assert!( test1.x < 0.0000000001 && test1.y < 0.0000000001 );
+	/// assert!( ( a.x < 0.0000000001 ) && ( a.y < 0.0000000001 ) );
 	/// ```
 	///
 	pub fn new( ) -> Vec2 {
-		Vec2 { x: 0.0, y: 0.0, system: CARTESIAN }
+		Vec2 { x: 0.0, y: 0.0,   coord_system: CARTESIAN }
 	}
 	
 	/// Generates a new instance of Vec2 initialized to chosen values and returns it
@@ -46,18 +46,18 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ System::*, vector::Vec2 };
+	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let test = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let a = Vec2::create( &5.6, &7.2, &CARTESIAN );
 	///
-	/// assert!( test.x - 5.6 < 0.0000000001 && test.y - 7.2 < 0.0000000001 );
+	/// assert!( ( ( a.x - 5.6 ) < 0.0000000001 ) && ( ( a.y - 7.2 ) < 0.0000000001 ) );
 	/// ```
 	///
-	pub fn create( x: &f64, y: &f64, system: &System ) -> Vec2 {
+	pub fn create( x: &f64, y: &f64,   coord_system: &CoordSystem ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: *x,
 			y: *y,
-			system: *system
+			coord_system: *coord_system
 		};
 		temp.swap_system( CARTESIAN );
 		temp
@@ -73,11 +73,11 @@ impl Vec2 {
 	/// 
 	/// ```
 	///
-	pub fn create_random( range: &Range<f64>, system: &System ) -> Vec2 {
+	pub fn create_random( range: &Range<f64>,   coord_system: &CoordSystem ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: rand::thread_rng().gen_range( range.clone() ),
 			y: rand::thread_rng().gen_range( range.clone() ),
-			system: *system,
+			  coord_system: *coord_system,
 		};
 		temp.swap_system( CARTESIAN );
 		temp
@@ -105,12 +105,12 @@ impl Vec2 {
 	///
 	/// ```
 	/// use std::f64::consts::TAU;
-	/// use math_lib::linear::{ System::*, vector::Vec2 };
+	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let mut test1 = Vec2::random_unit( & ( 0.0..TAU ) );
-	/// test1.swap_system( POLAR );
+	/// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
+	/// a.swap_system( POLAR );
 	///
-	/// assert!((test1.x - 1.0 < 0.0000000001) && (test1.y <= TAU));
+	/// assert!( ( ( a.x - 1.0 ) < 0.0000000001 ) && ( a.y <= TAU ) );
 	/// ```
 	///
 	pub fn random_unit( range: &Range<f64> ) -> Vec2 {
@@ -124,15 +124,15 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ System::*, vector::Vec2 };
+	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let mut test2 = Vec2::unit();
+	/// let mut b = Vec2::unit();
 	///
-	/// assert!( ( test2.x - 1.0 < 0.0000000001 ) && ( test2.y < 0.0000000001 ) );
+	/// assert!( ( b.x - 1.0 < 0.0000000001 ) && ( b.y < 0.0000000001 ) );
 	/// ```
 	///
 	pub fn unit( ) -> Vec2 {
-		let mut temp = Vec2 { x: 1.0, y: 0.0, system: POLAR };
+		let mut temp = Vec2 { x: 1.0, y: 0.0,   coord_system: POLAR };
 		temp.swap_system( CARTESIAN );
 		temp
 	}
@@ -158,13 +158,14 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ System::*, vector::Vec2 };
+	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let mut test = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let mut b = Vec2::unit();
 	///
-	/// let mut test2 = Vec2::unit();
+	/// let angle = a.angle_between( &mut b );
 	///
-	/// assert!( test.angle_between( &mut test2 ) - 1.4731481877 < 0.0000000001 );
+	/// assert!( ( angle - 1.4731481877 ) < 0.0000000001 );
 	/// ```
 	///
 	pub fn angle_between( &mut self, rhs: &mut Vec2 ) -> f64 {
@@ -254,14 +255,14 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use math_lib::linear::{ System::*, vector::Vec2, UnitF };
+	/// use math_lib::linear::{ CoordSystem::*, vector::Vec2, UnitF };
 	///
-	///	let mut test = Vec2::create( &5.6, &7.2, &CARTESIAN );
-	/// let mut test2 = Vec2::unit();
+	///	let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let mut b = Vec2::unit();
 	///
-	/// test.lerp( &test2, UnitF::new( 0.5 ) );
+	/// a.lerp( &b, UnitF::new( 0.5 ) );
 	///
-	/// assert!( test.x - 3.3 < 0.0000000001 && test.y - 3.6 < 0.0000000001 );
+	/// assert!( ( ( a.x - 3.3 ) < 0.0000000001 ) && ( ( a.y - 3.6 ) < 0.0000000001 ) );
 	/// ```
 	///
 	pub fn lerp( &mut self, rhs: &Vec2, amt: UnitF ) {
@@ -374,8 +375,8 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn set( &mut self, input1: &f64, input2: &f64, system: &System ) {
-		if *system == CARTESIAN {
+	pub fn set( &mut self, input1: &f64, input2: &f64,   coord_system: &CoordSystem ) {
+		if *coord_system == CARTESIAN {
 			self.swap_system( CARTESIAN );
 			self.x = *input1;
 			self.y = *input2;
@@ -445,8 +446,8 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn system( &self ) -> System {
-		self.system
+	pub fn system( &self ) -> CoordSystem {
+		self .coord_system
 	}
 	
 	/// Converts components from cartesian to polar coordinates, and vice versa
@@ -459,20 +460,20 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn swap_system( &mut self, new_system: System ) {
-		if self.system == POLAR && new_system == CARTESIAN {
+	pub fn swap_system( &mut self, new_coord_system: CoordSystem ) {
+		if self .coord_system == POLAR &&  new_coord_system == CARTESIAN {
 			
 			let x = self.x;
 			self.x = ( (self.x).powi(2 ) + ( self.y ).powi(2 ) ).sqrt( );
 			self.y = self.y.atan2(x );
-			self.system = new_system;
+			self .coord_system =  new_coord_system;
 			
-		} else if self.system == CARTESIAN && new_system == POLAR {
+		} else if self .coord_system == CARTESIAN &&  new_coord_system == POLAR {
 			
 			let theta = self.y;
 			self.y = self.x * self.y.sin();
 			self.x *= theta.cos();
-			self.system = new_system;
+			self .coord_system =  new_coord_system;
 		}
 	}
 	

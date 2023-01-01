@@ -12,7 +12,7 @@ pub mod matrix;
 /// ```
 ///
 #[derive(Copy, Clone, Debug, PartialEq)]
-pub enum System {
+pub enum CoordSystem {
 	CARTESIAN,
 	POLAR,
 }
@@ -47,7 +47,7 @@ impl UnitF {
 		if (0.0..1.0).contains( &value ) {
 			UnitF { value }
 		} else {
-			panic!( "Unit floats must be in the range [0.0, 1.0]")
+			UnitF { value: value.clamp( 0.0, 1.0 ) }
 		}
 	}
 	
