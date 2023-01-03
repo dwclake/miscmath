@@ -309,8 +309,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn dist( &mut self, rhs: &Vec2 ) -> f64 {
-		self.swap_system( CARTESIAN );
+	pub fn dist( &self, rhs: &Vec2 ) -> f64 {
 		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) )
 	}
 	
@@ -338,8 +337,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn dot( &mut self, rhs: &Vec2 ) -> f64 {
-		self.swap_system( CARTESIAN );
+	pub fn dot( &self, rhs: &Vec2 ) -> f64 {
 		( self.x * rhs.x ) + ( self.y * rhs.y )
 	}
 	
@@ -354,7 +352,6 @@ impl Vec2 {
 	/// ```
 	///
 	pub fn div( &mut self, rhs: &f64 ) {
-		self.swap_system( CARTESIAN );
 		self.x /= rhs;
 		self.y /= rhs;
 	}
