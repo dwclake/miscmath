@@ -387,8 +387,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn mag( &mut self ) -> f64 {
-		self.swap_system( CARTESIAN );
+	pub fn mag( &self ) -> f64 {
 		( ( self.x ).powi(2) ).sqrt() + ( self.y ).powi(2)
 	}
 	
@@ -402,8 +401,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn mag_sq( &mut self ) -> f64 {
-		self.swap_system( CARTESIAN );
+	pub fn mag_sq( &self ) -> f64 {
 		( self.x ).powi(2) + ( self.y ).powi(2)
 	}
 	
