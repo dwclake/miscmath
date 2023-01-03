@@ -123,7 +123,7 @@ impl Div for Vec2 {
 ///
 impl PartialEq for Vec2 {
 	fn eq( &self, rhs: &Self ) -> bool {
-		if (*self - *rhs).x < 0.0000000001  && (*self - *rhs).y < 0.0000000001 && self.coord_system == rhs.coord_system {
+		if (*self - *rhs).x.abs() < 0.0000000001  && (*self - *rhs).y.abs() < 0.0000000001 && self.coord_system == rhs.coord_system {
 			true
 		} else {
 			false
