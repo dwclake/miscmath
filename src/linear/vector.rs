@@ -277,7 +277,7 @@ impl Vec2 {
 	/// assert!( ( angle - 1.4731481877 ) < 0.0000000001 );
 	/// ```
 	///
-	pub fn angle_between( &mut self, rhs: &mut Vec2 ) -> f64 {
+	pub fn angle_between( &self, rhs: &Vec2 ) -> f64 {
 		let dot = self.dot( &rhs );
 		( dot / ( self.mag() * rhs.mag() ) ).acos()
 	}
