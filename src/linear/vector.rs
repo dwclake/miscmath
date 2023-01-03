@@ -203,7 +203,7 @@ impl Vec2 {
 	///
 	pub fn from_angle( theta: &f32 ) -> Vec2 {
 		let mut temp = Vec2::create( &1.0, theta, &POLAR );
-		temp.swap_system( CARTESIAN );
+		//temp.swap_system( CARTESIAN );
 		temp
 	}
 	
