@@ -2,7 +2,7 @@ use super::*;
 use super::CoordSystem::*;
 
 use rand::Rng;
-use std::ops::{Add, Range};
+use std::ops::{Add, Div, Mul, Range, Sub};
 
 /// A two dimensional mathematical vector
 ///
@@ -16,13 +16,23 @@ use std::ops::{Add, Range};
 /// assert!( ( a.x < 0.0000000001 ) && ( a.y < 0.0000000001 ) );
 /// ```
 ///
-#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
+#[derive( Copy, Clone, Debug )]
 pub struct Vec2 {
 	pub x: f64,
 	pub y: f64,
 	coord_system: CoordSystem,
 }
 
+/// Implements Add for Vec2
+///
+/// # Examples
+///
+/// ```
+///
+///
+///
+/// ```
+///
 impl Add for Vec2 {
 	type Output = Self;
 	
@@ -31,6 +41,92 @@ impl Add for Vec2 {
 			x: self.x + rhs.x,
 			y: self.y + rhs.y,
 			coord_system: self.coord_system,
+		}
+	}
+}
+
+/// Implements Sub for Vec2
+///
+/// # Examples
+///
+/// ```
+///
+///
+///
+/// ```
+///
+impl Sub for Vec2 {
+	type Output = Self;
+	
+	fn sub( self, rhs: Self) -> Self::Output {
+		Self {
+			x: self.x - rhs.x,
+			y: self.y - rhs.y,
+			coord_system: self.coord_system,
+		}
+	}
+}
+
+/// Implements Mul for Vec2
+///
+/// # Examples
+///
+/// ```
+///
+///
+///
+/// ```
+///
+impl Mul for Vec2 {
+	type Output = Self;
+	
+	fn mul( self, rhs: Self) -> Self::Output {
+		Self {
+			x: self.x * rhs.x,
+			y: self.y * rhs.y,
+			coord_system: self.coord_system,
+		}
+	}
+}
+
+/// Implements Div for Vec2
+///
+/// # Examples
+///
+/// ```
+///
+///
+///
+/// ```
+///
+impl Div for Vec2 {
+	type Output = Self;
+	
+	fn div( self, rhs: Self) -> Self::Output {
+		Self {
+			x: self.x / rhs.x,
+			y: self.y / rhs.y,
+			coord_system: self.coord_system,
+		}
+	}
+}
+
+/// Implements PartialEq for Vec2
+///
+/// # Examples
+///
+/// ```
+///  
+///
+///
+/// ```
+///
+impl PartialEq for Vec2 {
+	fn eq( &self, rhs: &Self ) -> bool {
+		if (*self - *rhs).x < 0.0000000001  && (*self - *rhs).y < 0.0000000001 && self.coord_system == rhs.coord_system {
+			true
+		} else {
+			false
 		}
 	}
 }
