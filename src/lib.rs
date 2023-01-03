@@ -50,7 +50,7 @@ pub fn fibonacci( ) {
 /// assert!( ( a - 25.0 ) < 0.000000001 );
 /// ```
 ///
-pub fn map(input: f32, in_rng: Range<f32>, out_rng: Range<f32> ) -> f32 {
+pub fn map(input: f64, in_rng: Range<f64>, out_rng: Range<f64> ) -> f64 {
 	out_rng.start + ( ( out_rng.end - out_rng.start )
 		/ ( in_rng.end - in_rng.start ) )
 		* ( input - in_rng.start )

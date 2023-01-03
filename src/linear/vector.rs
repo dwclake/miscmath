@@ -18,8 +18,8 @@ use std::ops::{Add, Range};
 ///
 #[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
 pub struct Vec2 {
-	pub x: f32,
-	pub y: f32,
+	pub x: f64,
+	pub y: f64,
 	coord_system: CoordSystem,
 }
 
@@ -65,7 +65,7 @@ impl Vec2 {
 	/// assert!( ( ( a.x - 5.6 ) < 0.0000000001 ) && ( ( a.y - 7.2 ) < 0.0000000001 ) );
 	/// ```
 	///
-	pub fn create( x: &f32, y: &f32,   coord_system: &CoordSystem ) -> Vec2 {
+	pub fn create( x: &f64, y: &f64,   coord_system: &CoordSystem ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: *x,
 			y: *y,
@@ -85,7 +85,7 @@ impl Vec2 {
 	/// 
 	/// ```
 	///
-	pub fn create_random( range_x: &Range<f32>, range_y: &Range<f32>,   coord_system: &CoordSystem ) -> Vec2 {
+	pub fn create_random( range_x: &Range<f64>, range_y: &Range<f64>,   coord_system: &CoordSystem ) -> Vec2 {
 		let mut temp = Vec2 {
 			x: rand::thread_rng().gen_range( range_x.clone() ),
 			y: rand::thread_rng().gen_range( range_y.clone() ),
@@ -105,7 +105,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn from_angle( theta: &f32 ) -> Vec2 {
+	pub fn from_angle( theta: &f64 ) -> Vec2 {
 		let mut temp = Vec2::create( &1.0, theta, &POLAR );
 		temp.swap_system( CARTESIAN );
 		temp
@@ -116,7 +116,7 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	/// use std::f32::consts::TAU;
+	/// use std::f64::consts::TAU;
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
@@ -125,7 +125,7 @@ impl Vec2 {
 	/// assert!( ( ( a.x - 1.0 ) < 0.0000000001 ) && ( a.y < TAU ) );
 	/// ```
 	///
-	pub fn random_unit( range: &Range<f32> ) -> Vec2 {
+	pub fn random_unit( range: &Range<f64> ) -> Vec2 {
 		let mut temp = Vec2::create( &1.0, &rand::thread_rng().gen_range( range.clone() ), &POLAR );
 		temp.swap_system( CARTESIAN );
 		temp
@@ -181,7 +181,7 @@ impl Vec2 {
 	/// assert!( ( angle - 1.4731481877 ) < 0.0000000001 );
 	/// ```
 	///
-	pub fn angle_between( &mut self, rhs: &mut Vec2 ) -> f32 {
+	pub fn angle_between( &mut self, rhs: &mut Vec2 ) -> f64 {
 		let dot = self.dot( &rhs );
 		( dot / ( self.mag() * rhs.mag() ) ).acos()
 	}
@@ -213,7 +213,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn dist( &mut self, rhs: &Vec2 ) -> f32 {
+	pub fn dist( &mut self, rhs: &Vec2 ) -> f64 {
 		self.swap_system( CARTESIAN );
 		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) )
 	}
@@ -242,7 +242,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn dot( &mut self, rhs: &Vec2 ) -> f32 {
+	pub fn dot( &mut self, rhs: &Vec2 ) -> f64 {
 		self.swap_system( CARTESIAN );
 		( self.x * rhs.x ) + ( self.y * rhs.y )
 	}
@@ -257,7 +257,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn div( &mut self, rhs: &f32 ) {
+	pub fn div( &mut self, rhs: &f64 ) {
 		self.swap_system( CARTESIAN );
 		self.x /= rhs;
 		self.y /= rhs;
@@ -294,7 +294,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn mag( &mut self ) -> f32 {
+	pub fn mag( &mut self ) -> f64 {
 		self.swap_system( CARTESIAN );
 		( ( self.x ).powi(2) ).sqrt() + ( self.y ).powi(2)
 	}
@@ -309,7 +309,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn mag_sq( &mut self ) -> f32 {
+	pub fn mag_sq( &mut self ) -> f64 {
 		self.swap_system( CARTESIAN );
 		( self.x ).powi(2) + ( self.y ).powi(2)
 	}
@@ -324,7 +324,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn mult( &mut self, rhs: &f32 ) {
+	pub fn mult( &mut self, rhs: &f64 ) {
 		self.swap_system( CARTESIAN );
 		self.x *= rhs;
 		self.y *= rhs;
@@ -356,7 +356,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn rem( &mut self, rhs: &f32 ) {
+	pub fn rem( &mut self, rhs: &f64 ) {
 		self.swap_system( CARTESIAN );
 		self.x %= rhs;
 		self.y %= rhs;
@@ -372,7 +372,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn rotate( &mut self, theta: f32 ) {
+	pub fn rotate( &mut self, theta: f64 ) {
 		self.swap_system( POLAR );
 		self.y += theta;
 		self.swap_system( CARTESIAN );
@@ -388,7 +388,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn set( &mut self, input1: &f32, input2: &f32,   coord_system: &CoordSystem ) {
+	pub fn set( &mut self, input1: &f64, input2: &f64,   coord_system: &CoordSystem ) {
 		if *coord_system == CARTESIAN {
 			self.swap_system( CARTESIAN );
 			self.x = *input1;
@@ -411,7 +411,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn set_mag( &mut self, input: &f32 ) {
+	pub fn set_mag( &mut self, input: &f64 ) {
 		self.swap_system( POLAR );
 		self.x = *input;
 		self.swap_system( CARTESIAN );
@@ -427,7 +427,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn set_theta( &mut self, input: &f32 ) {
+	pub fn set_theta( &mut self, input: &f64 ) {
 		self.swap_system( POLAR );
 		self.y = *input;
 		self.swap_system( CARTESIAN );
@@ -500,7 +500,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn theta( &self ) -> f32 {
+	pub fn theta( &self ) -> f64 {
 		( self.y ).atan2( self.x )
 	}
 }

@@ -17,7 +17,7 @@ pub enum CoordSystem {
 	POLAR,
 }
 
-/// Unitary float, a f32 which must be in the closed interval [0.0,1.0]
+/// Unitary float, a f64 which must be in the closed interval [0.0,1.0]
 ///
 /// # Examples
 ///
@@ -29,7 +29,7 @@ pub enum CoordSystem {
 ///
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct UnitF {
-	value: f32,
+	value: f64,
 }
 
 impl UnitF {
@@ -44,7 +44,7 @@ impl UnitF {
 	///
 	/// ```
 	///
-	pub fn new ( value: f32 ) -> UnitF {
+	pub fn new ( value: f64 ) -> UnitF {
 		if (0.0..1.0).contains( &value ) {
 			UnitF { value }
 		} else {
@@ -62,7 +62,7 @@ impl UnitF {
 	///
 	/// ```
 	///
-	pub fn value( &self ) -> f32 {
+	pub fn value( &self ) -> f64 {
 		self.value
 	}
 	
