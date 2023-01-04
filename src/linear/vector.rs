@@ -156,18 +156,17 @@ impl Vec2 {
 	/// ```
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let a = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let a = Vec2::create( &5.6, &7.2 );
 	///
 	/// assert!( ( ( a.x - 5.6 ) < 0.0000000001 ) && ( ( a.y - 7.2 ) < 0.0000000001 ) );
 	/// ```
 	///
-	pub fn create( x: &f32, y: &f32,   coord_system: &CoordSystem ) -> Vec2 {
-		let mut temp = Vec2 {
+	pub fn create( x: &f32, y: &f32 ) -> Vec2 {
+		let temp = Vec2 {
 			x: *x,
 			y: *y,
-			coord_system: *coord_system
+			coord_system: CARTESIAN,
 		};
-		temp.swap_system( CARTESIAN );
 		temp
 	}
 	
@@ -181,13 +180,46 @@ impl Vec2 {
 	/// 
 	/// ```
 	///
-	pub fn create_random( range_x: &Range<f32>, range_y: &Range<f32>,   coord_system: &CoordSystem ) -> Vec2 {
-		let mut temp = Vec2 {
+	pub fn from_rand_angle( range_x: &Range<f32>, mag: &Option<f32> ) -> Vec2 {
+		let temp = Vec2::from_angle( &rand::thread_rng().gen_range( range_x.clone() ), mag );
+		temp
+	}
+	
+	/// Generates a new instance of Vec2 initialized to random values in the range entered and returns it
+	///
+	/// # Examples
+	///
+	/// ```
+	///
+	///
+	///
+	/// ```
+	///
+	pub fn create_random( range_x: &Range<f32> ) -> Vec2 {
+		let temp = Vec2 {
+			x: rand::thread_rng().gen_range( range_x.clone() ),
+			y: rand::thread_rng().gen_range( range_x.clone() ),
+			coord_system: CARTESIAN,
+		};
+		temp
+	}
+	
+	/// Generates a new instance of Vec2 initialized to random values in the range entered and returns it
+	///
+	/// # Examples
+	///
+	/// ```
+	///
+	///
+	///
+	/// ```
+	///
+	pub fn create_random2( range_x: &Range<f32>, range_y: &Range<f32> ) -> Vec2 {
+		let temp = Vec2 {
 			x: rand::thread_rng().gen_range( range_x.clone() ),
 			y: rand::thread_rng().gen_range( range_y.clone() ),
-			coord_system: *coord_system,
+			coord_system: CARTESIAN,
 		};
-		temp.swap_system( CARTESIAN );
 		temp
 	}
 	
@@ -201,9 +233,16 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn from_angle( theta: &f32 ) -> Vec2 {
-		let temp = Vec2::create( &1.0, theta, &POLAR );
-		temp
+	pub fn from_angle( theta: &f32, in_mag: &Option<f32> ) -> Vec2 {
+		if let Some(mag) = in_mag {
+			let mut temp = Vec2 { x: *mag, y: *theta, coord_system: POLAR };
+			temp.swap_system( CARTESIAN );
+			temp
+		} else {
+			let mut temp = Vec2 { x: 1.0, y: *theta, coord_system: POLAR };
+			temp.swap_system( CARTESIAN );
+			temp
+		}
 	}
 	
 	/// Generates a new instance of Vec2 initialized to a magnitude of 1 and a angle of random value in the range entered and returns it
@@ -221,8 +260,7 @@ impl Vec2 {
 	/// ```
 	///
 	pub fn random_unit( range: &Range<f32> ) -> Vec2 {
-		let mut temp = Vec2::create( &1.0, &rand::thread_rng().gen_range( range.clone() ), &POLAR );
-		temp.swap_system( CARTESIAN );
+		let temp = Vec2::from_angle(&rand::thread_rng().gen_range( range.clone() ), &None );
 		temp
 	}
 	
@@ -240,8 +278,7 @@ impl Vec2 {
 	/// ```
 	///
 	pub fn unit( ) -> Vec2 {
-		let mut temp = Vec2 { x: 1.0, y: 0.0, coord_system: POLAR };
-		temp.swap_system( CARTESIAN );
+		let temp = Vec2::from_angle( &0.0, &Some(1.0));
 		temp
 	}
 	
@@ -268,7 +305,7 @@ impl Vec2 {
 	/// ```
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
-	/// let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	/// let mut a = Vec2::create( &5.6, &7.2 );
 	/// let mut b = Vec2::unit();
 	///
 	/// let angle = a.angle_between( &mut b );
@@ -362,7 +399,7 @@ impl Vec2 {
 	/// ```
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2, UnitF };
 	///
-	///	let mut a = Vec2::create( &5.6, &7.2, &CARTESIAN );
+	///	let mut a = Vec2::create( &5.6, &7.2 );
 	/// let mut b = Vec2::unit();
 	///
 	/// a.lerp( &b, UnitF::new( 0.5 ) );
@@ -564,14 +601,14 @@ impl Vec2 {
 	/// ```
 	///
 	pub fn swap_system( &mut self, new_coord_system: CoordSystem ) {
-		if self .coord_system == POLAR &&  new_coord_system == CARTESIAN {
+		if self .coord_system == CARTESIAN &&  new_coord_system == POLAR {
 			
 			let x = self.x;
 			self.x = ( (self.x).powi(2 ) + ( self.y ).powi(2 ) ).sqrt( );
 			self.y = self.y.atan2(x );
 			self .coord_system =  new_coord_system;
 			
-		} else if self .coord_system == CARTESIAN &&  new_coord_system == POLAR {
+		} else if self .coord_system == POLAR &&  new_coord_system == CARTESIAN {
 			
 			let theta = self.y;
 			self.y = self.x * self.y.sin();
