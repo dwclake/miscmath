@@ -254,7 +254,6 @@ impl Vec2 {
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
-	/// a.swap_system( POLAR );
 	///
 	/// assert!( ( ( a.x - 1.0 ) < 0.0000000001 ) && ( a.y < TAU ) );
 	/// ```
@@ -272,7 +271,6 @@ impl Vec2 {
 	/// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
 	///
 	/// let mut b = Vec2::unit();
-	/// b.swap_system( POLAR );
 	///
 	/// assert!( ( b.x - 1.0 < 0.0000000001 ) && ( b.y < 0.0000000001 ) );
 	/// ```
@@ -600,7 +598,7 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn swap_system( &mut self, new_coord_system: CoordSystem ) {
+	fn swap_system( &mut self, new_coord_system: CoordSystem ) {
 		if self .coord_system == CARTESIAN &&  new_coord_system == POLAR {
 			
 			let x = self.x;
