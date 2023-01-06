@@ -4,6 +4,8 @@
 //! and linear algebra structures like vectors and matrices.
 
 pub mod linear;
+pub mod prelude;
+
 pub use crate::linear::{CoordSystem, UnitF, vector,  matrix};
 
 use std::ops::Range;
