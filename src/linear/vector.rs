@@ -122,8 +122,19 @@ impl Div for Vec2 {
 /// ```
 ///
 impl PartialEq for Vec2 {
+	
+	///
 	fn eq( &self, rhs: &Self ) -> bool {
 		if (*self - *rhs).x.abs() < 0.0000000001  && (*self - *rhs).y.abs() < 0.0000000001 && self.coord_system == rhs.coord_system {
+			true
+		} else {
+			false
+		}
+	}
+	
+	///
+	fn ne( &self, rhs: &Self ) -> bool {
+		if (*self - *rhs).x.abs() > 0.0000000001  && (*self - *rhs).y.abs() > 0.0000000001 {
 			true
 		} else {
 			false
@@ -326,7 +337,7 @@ impl Vec2 {
 	///
 	/// ```
 	///
-	pub fn constrain(&mut self, x: &Range<f32>, y: &Range<f32>) {
+	pub fn constrain( &mut self, x: &Range<f32>, y: &Range<f32> ) {
 		self.x = self.x.clamp( x.start, x.end );
 		self.y = self.y.clamp( y.start, y.end );
 	}
