@@ -333,7 +333,7 @@ impl Vec2 {
 		self.y = -x;
 	}
 	
-	/// Calculates the distance between self and the Vec2 passed in
+	/// Calculates the distance squared between self and the Vec2 passed in
 	///
 	/// # Examples
 	///
@@ -343,8 +343,22 @@ impl Vec2 {
 	///   
 	/// ```
 	///
-	pub fn dist( &self, rhs: &Vec2 ) -> f32 {
+	pub fn dist_sq(&self, rhs: &Vec2 ) -> f32 {
 		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) )
+	}
+	
+	/// Calculates the distance between self and the Vec2 passed in
+	///
+	/// # Examples
+	///
+	/// ```
+	///
+	///
+	///
+	/// ```
+	///
+	pub fn dist(&self, rhs: &Vec2 ) -> f32 {
+		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) ).sqrt()
 	}
 	
 	/// Prints debug information of self to terminal
