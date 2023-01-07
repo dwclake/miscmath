@@ -175,21 +175,6 @@ impl Vec2 {
 	/// # Examples
 	///
 	/// ```
-	///  
-	///
-	/// 
-	/// ```
-	///
-	pub fn from_rand_angle( range_x: &Range<f32>, mag: &Option<f32> ) -> Vec2 {
-		let temp = Vec2::from_angle( &rand::thread_rng().gen_range( range_x.clone() ), mag );
-		temp
-	}
-	
-	/// Generates a new instance of Vec2 initialized to random values in the range entered and returns it
-	///
-	/// # Examples
-	///
-	/// ```
 	///
 	///
 	///
@@ -243,6 +228,21 @@ impl Vec2 {
 			temp.swap_system( CARTESIAN );
 			temp
 		}
+	}
+	
+	/// Generates a new instance of Vec2 initialized to random values in the range entered and returns it
+	///
+	/// # Examples
+	///
+	/// ```
+	///
+	///
+	///
+	/// ```
+	///
+	pub fn from_rand_angle( range_x: &Range<f32>, mag: &Option<f32> ) -> Vec2 {
+		let temp = Vec2::from_angle( &rand::thread_rng().gen_range( range_x.clone() ), mag );
+		temp
 	}
 	
 	/// Generates a new instance of Vec2 initialized to a magnitude of 1 and a angle of random value in the range entered and returns it
@@ -316,6 +316,21 @@ impl Vec2 {
 		( dot / ( self.mag() * rhs.mag() ) ).acos()
 	}
 	
+	///
+	///
+	/// # Examples
+	///
+	/// ```
+	///
+	///
+	///
+	/// ```
+	///
+	pub fn constrain(&mut self, x: &Range<f32>, y: &Range<f32>) {
+		self.x = self.x.clamp( x.start, x.end );
+		self.y = self.y.clamp( y.start, y.end );
+	}
+	
 	/// Generates a new instance of Vec2 which is perpendicular to the self instance
 	///
 	/// # Examples
@@ -333,20 +348,6 @@ impl Vec2 {
 		self.y = -x;
 	}
 	
-	/// Calculates the distance squared between self and the Vec2 passed in
-	///
-	/// # Examples
-	///
-	/// ```
-	///  
-	///
-	///   
-	/// ```
-	///
-	pub fn dist_sq(&self, rhs: &Vec2 ) -> f32 {
-		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) )
-	}
-	
 	/// Calculates the distance between self and the Vec2 passed in
 	///
 	/// # Examples
@@ -359,6 +360,20 @@ impl Vec2 {
 	///
 	pub fn dist(&self, rhs: &Vec2 ) -> f32 {
 		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) ).sqrt()
+	}
+	
+	/// Calculates the distance squared between self and the Vec2 passed in
+	///
+	/// # Examples
+	///
+	/// ```
+	///  
+	///
+	///   
+	/// ```
+	///
+	pub fn dist_sq(&self, rhs: &Vec2 ) -> f32 {
+		( ( self.x - rhs.x ).powi(2) ) + ( ( self.y - rhs.y ).powi(2) )
 	}
 	
 	/// Prints debug information of self to terminal
