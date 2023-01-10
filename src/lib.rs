@@ -20,8 +20,8 @@ use std::ops::Range;
 ///
 /// ```
 ///
-pub fn constrain( x: &mut f32, rng: &Range<f32>) {
-	*x = x.clamp( rng.start, rng.end );
+pub fn constrain( val: &mut f32, rng: &Range<f32>) {
+	*val = val.clamp( rng.start, rng.end );
 }
 
 /// Calculates and returns the factorial of the integer entered

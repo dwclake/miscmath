@@ -337,9 +337,9 @@ impl Vec2 {
 	///
 	/// ```
 	///
-	pub fn constrain( &mut self, x: &Range<f32>, y: &Range<f32> ) {
-		self.x = self.x.clamp( x.start, x.end );
-		self.y = self.y.clamp( y.start, y.end );
+	pub fn constrain( &mut self, x_rng: &Range<f32>, y_rng: &Range<f32> ) {
+		self.x = self.x.clamp( x_rng.start, x_rng.end );
+		self.y = self.y.clamp( y_rng.start, y_rng.end );
 	}
 	
 	/// Generates a new instance of Vec2 which is perpendicular to the self instance
