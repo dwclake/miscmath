@@ -23,6 +23,22 @@ pub struct Vec2 {
 	coord_system: CoordSystem,
 }
 
+/// Implements Default for Vec2
+/// 
+/// # Examples
+/// 
+/// ```
+/// 
+///
+/// 
+/// ```
+/// 
+impl Default for Vec2 {
+    fn default() -> Self {
+        Self { x: 0.0, y: 0.0, coord_system: CARTESIAN }
+    }
+}
+
 /// Implements Add for Vec2
 ///
 /// # Examples
