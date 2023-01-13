@@ -78,7 +78,7 @@ pub const DEFAULT_NOISE_SEED: usize = 0;
 /// # Examples
 ///
 /// ```
-/// use rusty_nature_of_code::noc::random;
+/// use miscmath::prelude::*;
 ///
 /// let a = random( 0..10 );
 /// let b = random( 0.0..10.0 );
@@ -104,26 +104,26 @@ pub fn random<T: SampleUniform>( rng: Range<T> ) -> T
 /// ```
 ///
 #[derive(Debug)]
-pub struct Noise {
+pub struct Perlin {
 	pub seed: usize,
 	permutation_table: [i16; 256]
 }
 
-impl Noise {
+impl Perlin {
 	
-	/// Initializes and returns a new Noise object
+	/// Initializes and returns a new Perlin object
 	///
 	/// # Examples
 	///
 	/// ```
 	/// use miscmath::prelude::*;
 	///
-	/// let perlin = Noise::new( DEFAULT_NOISE_SEED );
+	/// let perlin = Perlin::new( DEFAULT_NOISE_SEED );
 	///
 	/// ```
 	///
-	pub fn new( seed: usize ) -> Noise {
-		let mut noise = Noise{
+	pub fn new( seed: usize ) -> Perlin {
+		let mut perlin = Perlin{
 			seed,
 			permutation_table: [-1; 256],
 		};
@@ -132,13 +132,13 @@ impl Noise {
 		for i in 0..256 {
 			
 			/* Finds a element that hasn't been set yet to assign to i */
-			Noise::permutation_gen( &mut noise.permutation_table, i );
+			Perlin::permutation_gen( &mut perlin.permutation_table, i );
 		}
 		
 		/* todo: implement the rest of the perlin noise algorithm, using the randomly generated permutation table to generate a array of interpolated
 		         pseudo-random values */
 		
-		noise
+		perlin
 	}
 	
 	// Recursive: Takes i and adds it to the permutation table at a random index, as long as that element hasn't been set yet (is still -1).
@@ -151,11 +151,11 @@ impl Noise {
 		if table[index] == -1 {
 			table[index] = i;
 		} else if i <= 256 { /* Recursive case: If a number has been assigned to that element, try again */
-			Noise::permutation_gen( table, i );
+			Perlin::permutation_gen( table, i );
 		}
 	}
 	
-	/// Generates a value between 0 and 1 using perlin Noise
+	/// Gets a value between 0 and 1 using perlin Noise
 	///
 	/// # Examples
 	///
