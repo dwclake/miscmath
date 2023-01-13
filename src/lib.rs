@@ -98,9 +98,9 @@ pub fn random<T: SampleUniform>( rng: Range<T> ) -> T
 /// # Examples
 ///
 /// ```
-/// use rusty_nature_of_code::prelude::*;
+/// use miscmath::prelude::*;
 ///
-/// let perlin = Noise::new( DEFAULT_NOISE_SEED );
+/// let perlin = Perlin::new( DEFAULT_NOISE_SEED );
 /// ```
 ///
 #[derive(Debug)]
