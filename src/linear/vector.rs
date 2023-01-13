@@ -931,7 +931,7 @@ impl Vec3 {
 		temp
 	}
 	
-	/// Generates a new instance of Vec3 based on a entered angle with a magnitude of 1
+	/// Generates a new instance of Vec3 based on a entered angles with a magnitude of 1
 	///
 	/// # Examples
 	///
@@ -970,7 +970,7 @@ impl Vec3 {
 		temp
 	}
 	
-	/// Generates a new instance of Vec3 initialized to a magnitude of 1 and a angle of random value in the range entered and returns it
+	/// Generates a new instance of Vec3 initialized to a magnitude of 1 and angles of random value in the range entered and returns it
 	///
 	/// # Examples
 	///
@@ -990,7 +990,7 @@ impl Vec3 {
 		temp
 	}
 	
-	/// Generates a new instance of Vec3 initialized as a unit vector of angle 0 and returns it
+	/// Generates a new instance of Vec3 initialized as a unit vector with angles of 0 and returns it
 	///
 	/// # Examples
 	///
