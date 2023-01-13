@@ -1,4 +1,5 @@
-use crate::{CoordSystem::{*, self}, UnitF};
+use super::*;
+use super::CoordSystem::*;
 
 use rand::Rng;
 use std::ops::{Add, Div, Mul, Range, Sub};

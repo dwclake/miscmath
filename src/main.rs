@@ -1,4 +1,4 @@
-use miscmath::{ vector::Vec2 };
+use miscmath::prelude::*;
 
 fn main() {
 	let x = Vec2::unit( );
