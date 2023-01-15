@@ -34,7 +34,9 @@ pub fn constrain(val: &mut f32, rng: &Range<f32>) {
 /// # Examples
 ///
 /// ```
-/// let a = miscmath::factorial(5);
+/// use miscmath::prelude::*;
+/// 
+/// let a = factorial(5);
 ///
 /// assert_eq!( a, 120 );
 /// ```
@@ -64,7 +66,9 @@ pub fn fibonacci() {}
 /// # Examples
 ///
 /// ```
-/// let a = miscmath::map(0.25, 0.0..1.0, 0.0..100.0 );
+/// use miscmath::prelude::*;
+/// 
+/// let a = map(0.25, 0.0..1.0, 0.0..100.0 );
 ///
 /// assert!( ( a - 25.0 ) < 0.000000001 );
 /// ```

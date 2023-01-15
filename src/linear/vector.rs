@@ -9,9 +9,9 @@ use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAs
 /// # Examples
 ///
 /// ```
-/// use miscmath::linear::vector::Vec2;
+/// use miscmath::prelude::*;
 ///
-/// let a = Vec2::new();
+/// let a = vector::Vec2::new();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
@@ -53,8 +53,8 @@ impl Default for Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = Vec2::new();
-/// let y = Vec2::create( &5.0, &7.0);
+/// let mut x = vector::Vec2::new();
+/// let y = vector::Vec2::create( &5.0, &7.0);
 /// x += y;
 ///
 /// assert_eq!(x, y);
@@ -280,9 +280,9 @@ impl Vec2 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::vector::Vec2;
+    /// use miscmath::prelude::*;
     ///
-    /// let a: Vec2 = Vec2::new();
+    /// let a = vector::Vec2::new();
     ///
     /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
     /// ```
@@ -300,9 +300,9 @@ impl Vec2 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
+    /// use miscmath::prelude::*;
     ///
-    /// let a = Vec2::create( &5.6, &7.2 );
+    /// let a = vector::Vec2::create( &5.6, &7.2 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.00001 ) && ( ( a.y - 7.2 ) < 0.00001 ) );
     /// ```
@@ -405,9 +405,9 @@ impl Vec2 {
     ///
     /// ```
     /// use std::f32::consts::TAU;
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
+    /// use miscmath::prelude::*;
     ///
-    /// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
+    /// let mut a = vector::Vec2::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( ( a.x - 1.0 ) < 0.00001 ) && ( a.y < TAU ) );
     /// ```
@@ -422,9 +422,9 @@ impl Vec2 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
+    /// use miscmath::prelude::*;
     ///
-    /// let mut b = Vec2::unit();
+    /// let mut b = vector::Vec2::unit();
     ///
     /// assert!( ( b.x - 1.0 < 0.00001 ) && ( b.y < 0.00001 ) );
     /// ```
@@ -455,10 +455,10 @@ impl Vec2 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec2 };
+    /// use miscmath::prelude::*;
     ///
-    /// let mut a = Vec2::create( &5.6, &7.2 );
-    /// let mut b = Vec2::unit();
+    /// let mut a = vector::Vec2::create( &5.6, &7.2 );
+    /// let mut b = vector::Vec2::unit();
     ///
     /// let angle = a.angle_between( &mut b );
     ///
@@ -578,10 +578,10 @@ impl Vec2 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec2, UnitF };
+    /// use miscmath::prelude::*;
     ///
-    ///	let mut a = Vec2::create( &5.6, &7.2 );
-    /// let mut b = Vec2::unit();
+    ///	let mut a = vector::Vec2::create( &5.6, &7.2 );
+    /// let mut b = vector::Vec2::unit();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
@@ -815,9 +815,9 @@ impl Vec2 {
 /// # Examples
 ///
 /// ```
-/// use miscmath::linear::vector::Vec3;
+/// use miscmath::prelude::*;
 ///
-/// let a = Vec3::new();
+/// let a = vector::Vec3::new();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) && ( a.z < 0.00001 ) );
 /// ```
@@ -1002,9 +1002,9 @@ impl Div for Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = Vec2::create( &100.0, &50.0 );
-/// let y = Vec2::create( &2.0, &5.0 );
-/// let z = Vec2::create( &50.0, &10.0 );
+/// let mut x = vector::Vec2::create( &100.0, &50.0 );
+/// let y = vector::Vec2::create( &2.0, &5.0 );
+/// let z = vector::Vec2::create( &50.0, &10.0 );
 ///
 /// x /= y;
 /// 
@@ -1098,9 +1098,9 @@ impl Vec3 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::vector::Vec3;
+    /// use miscmath::prelude::*;
     ///
-    /// let a: Vec3 = Vec3::new();
+    /// let a = vector::Vec3::new();
     ///
     /// assert!( ( a.x < 0.000001 ) && ( a.y < 0.000001 ) && ( a.z < 0.00001 ) );
     /// ```
@@ -1119,9 +1119,9 @@ impl Vec3 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec3 };
+    /// use miscmath::prelude::*;
     ///
-    /// let a = Vec3::create( &5.6, &7.2, &6.8 );
+    /// let a = vector::Vec3::create( &5.6, &7.2, &6.8 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.000001 ) && ( ( a.y - 7.2 ) < 0.000001 ) && ( ( a.z - 6.8 ) < 0.00001 ) );
     /// ```
@@ -1237,9 +1237,9 @@ impl Vec3 {
     ///
     /// ```
     /// use std::f32::consts::TAU;
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec3 };
+    /// use miscmath::prelude::*;
     ///
-    /// let mut a = Vec3::random_unit( &( 0.0..TAU ) );
+    /// let mut a = vector::Vec3::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( a.x - 1.0 < 0.00001 ) && ( a.y < TAU ) && ( a.z < TAU ) );
     /// ```
@@ -1258,9 +1258,9 @@ impl Vec3 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec3 };
+    /// use miscmath::prelude::*;
     ///
-    /// let mut b = Vec3::unit();
+    /// let mut b = vector::Vec3::unit();
     ///
     /// assert!( ( b.x < 0.00001 ) && ( b.y < 0.00001 ) && ( b.z - 1.0 < 0.0001 ) );
     /// ```
@@ -1426,10 +1426,10 @@ impl Vec3 {
     /// # Examples
     ///
     /// ```
-    /// use miscmath::linear::{ CoordSystem::*, vector::Vec3, UnitF };
+    /// use miscmath::prelude::*;
     ///
-    ///	let mut a = Vec3::create( &5.6, &7.2, &6.8 );
-    /// let mut b = Vec3::new();
+    ///	let mut a = vector::Vec3::create( &5.6, &7.2, &6.8 );
+    /// let mut b = vector::Vec3::new();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
