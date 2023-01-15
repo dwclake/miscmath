@@ -1,7 +1,7 @@
 [package]
 name = "miscmath"
 description = "miscmath will be a collection of general math functions and linear algebra structures like vectors and matrices."
-version = "0.2.3"
+version = "0.2.31"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dwclake/miscmath"
 authors = ["dwclake <devonwebb559@gmail.com>"]
