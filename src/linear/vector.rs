@@ -11,7 +11,7 @@ use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAs
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec2::new();
+/// let a = vector::Vec2::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
@@ -27,13 +27,16 @@ pub struct Vec2 {
 }
 
 /// Implements Default for Vec2
+/// Generates a new instance of Vec2 initialized to zero and returns it
 ///
 /// # Examples
 ///
 /// ```
+/// use miscmath::prelude::*;
 ///
+/// let a = vector::Vec2::default();
 ///
-///
+/// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
 ///
 impl Default for Vec2 {
@@ -53,8 +56,8 @@ impl Default for Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec2::new();
-/// let y = vector::Vec2::create( &5.0, &7.0);
+/// let mut x = vector::Vec2::default();
+/// let y = vector::Vec2::new( &5.0, &7.0);
 /// x += y;
 ///
 /// assert_eq!(x, y);
@@ -275,7 +278,7 @@ impl PartialEq for Vec2 {
 }
 
 impl Vec2 {
-    /// Generates a new instance of Vec2 initialized to zero and returns it
+    /*/// Generates a new instance of Vec2 initialized to zero and returns it
     ///
     /// # Examples
     ///
@@ -293,7 +296,7 @@ impl Vec2 {
             y: 0.0,
             coord_system: CARTESIAN,
         }
-    }
+    }*/
 
     /// Generates a new instance of Vec2 initialized to chosen values and returns it
     ///
@@ -302,12 +305,12 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec2::create( &5.6, &7.2 );
+    /// let a = vector::Vec2::new( &5.6, &7.2 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.00001 ) && ( ( a.y - 7.2 ) < 0.00001 ) );
     /// ```
     ///
-    pub fn create(x: &f32, y: &f32) -> Vec2 {
+    pub fn new(x: &f32, y: &f32) -> Vec2 {
         let temp = Vec2 {
             x: *x,
             y: *y,
@@ -457,7 +460,7 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec2::create( &5.6, &7.2 );
+    /// let mut a = vector::Vec2::new( &5.6, &7.2 );
     /// let mut b = vector::Vec2::unit();
     ///
     /// let angle = a.angle_between( &mut b );
@@ -580,7 +583,7 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec2::create( &5.6, &7.2 );
+    ///	let mut a = vector::Vec2::new( &5.6, &7.2 );
     /// let mut b = vector::Vec2::unit();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
@@ -817,7 +820,7 @@ impl Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec3::new();
+/// let a = vector::Vec3::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) && ( a.z < 0.00001 ) );
 /// ```
@@ -835,13 +838,16 @@ pub struct Vec3 {
 }
 
 /// Implements Default for Vec3
+/// Generates a new instance of Vec3 initialized to zero and returns it
 ///
 /// # Examples
 ///
 /// ```
+/// use miscmath::prelude::*;
 ///
+/// let a = vector::Vec3::default();
 ///
-///
+/// assert!( ( a.x < 0.000001 ) && ( a.y < 0.000001 ) && ( a.z < 0.00001 ) );
 /// ```
 ///
 impl Default for Vec3 {
@@ -1002,9 +1008,9 @@ impl Div for Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec2::create( &100.0, &50.0 );
-/// let y = vector::Vec2::create( &2.0, &5.0 );
-/// let z = vector::Vec2::create( &50.0, &10.0 );
+/// let mut x = vector::Vec3::new( &100.0, &50.0, &30.0 );
+/// let y = vector::Vec3::new( &2.0, &5.0 , &3.0 );
+/// let z = vector::Vec3::new( &50.0, &10.0, &10.0 );
 ///
 /// x /= y;
 /// 
@@ -1093,7 +1099,7 @@ impl PartialEq for Vec3 {
 }
 
 impl Vec3 {
-    /// Generates a new instance of Vec3 initialized to zero and returns it
+    /*/// Generates a new instance of Vec3 initialized to zero and returns it
     ///
     /// # Examples
     ///
@@ -1112,7 +1118,7 @@ impl Vec3 {
             z: 0.0,
             coord_system: CARTESIAN,
         }
-    }
+    }*/
 
     /// Generates a new instance of Vec3 initialized to chosen values and returns it
     ///
@@ -1121,12 +1127,12 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec3::create( &5.6, &7.2, &6.8 );
+    /// let a = vector::Vec3::new( &5.6, &7.2, &6.8 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.000001 ) && ( ( a.y - 7.2 ) < 0.000001 ) && ( ( a.z - 6.8 ) < 0.00001 ) );
     /// ```
     ///
-    pub fn create(x: &f32, y: &f32, z: &f32) -> Vec3 {
+    pub fn new(x: &f32, y: &f32, z: &f32) -> Vec3 {
         let temp = Vec3 {
             x: *x,
             y: *y,
@@ -1428,8 +1434,8 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec3::create( &5.6, &7.2, &6.8 );
-    /// let mut b = vector::Vec3::new();
+    ///	let mut a = vector::Vec3::new( &5.6, &7.2, &6.8 );
+    /// let mut b = vector::Vec3::default();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
