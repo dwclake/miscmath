@@ -4,6 +4,8 @@ use super::*;
 use rand::Rng;
 use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAssign, Rem, RemAssign};
 
+/* TODO: make vectors generic and duplicate each impl block, one for f32, f64, isize */
+
 /// A two dimensional mathematical vector
 ///
 /// # Examples

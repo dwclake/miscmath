@@ -12,9 +12,6 @@ use rand::{
 };
 use std::ops::Range;
 
-/* todo: create a Number, Float and Integer trait and impliment it for float and integer primatives, 
-    then constrain vector functions to float and int separately. The float trait could have a function pow which will act as powi */
-
 ///
 ///
 /// # Examples
