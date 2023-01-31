@@ -4,7 +4,7 @@ use super::*;
 use rand::Rng;
 use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAssign, Rem, RemAssign};
 
-/* TODO: make vectors generic and duplicate each impl block, one for f32, f64, isize */
+/* TODO: make vectors generic and duplicate each impl block, one for f32, isize */
 
 /// A two dimensional mathematical vector
 ///
@@ -19,16 +19,16 @@ use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAs
 /// ```
 ///
 #[derive(Copy, Clone, Debug)]
-pub struct Vec2 {
+pub struct Vec2<T> {
     ///
-    pub x: f32,
+    pub x: T,
     ///
-    pub y: f32,
+    pub y: T,
     ///
     coord_system: CoordSystem,
 }
 
-/// Implements Default for Vec2
+/// Implements Default for Vec2<f32>
 /// Generates a new instance of Vec2 initialized to zero and returns it
 ///
 /// # Examples
@@ -36,12 +36,12 @@ pub struct Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec2::default();
+/// let a = vector::Vec2::<f32>::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
 ///
-impl Default for Vec2 {
+impl Default for Vec2<f32> {
     fn default() -> Self {
         Self {
             x: 0.0,
@@ -51,21 +51,21 @@ impl Default for Vec2 {
     }
 }
 
-/// Implements Add for Vec2
+/// Implements Add for Vec2<f32>
 ///
 /// # Examples
 ///
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec2::default();
-/// let y = vector::Vec2::new( &5.0, &7.0);
+/// let mut x = vector::Vec2::<f32>::default();
+/// let y = vector::Vec2::<f32>::new( &5.0, &7.0);
 /// x += y;
 ///
 /// assert_eq!(x, y);
 /// ```
 ///
-impl Add for Vec2 {
+impl Add for Vec2<f32> {
     type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
@@ -77,7 +77,7 @@ impl Add for Vec2 {
     }
 }
 
-/// Implements AddAssign for Vec2
+/// Implements AddAssign for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -87,14 +87,14 @@ impl Add for Vec2 {
 ///
 /// ```
 ///
-impl AddAssign for Vec2 {
+impl AddAssign for Vec2<f32> {
 
     fn add_assign(&mut self, rhs: Self) {
         *self = *self + rhs;
     }
 }
 
-/// Implements Sub for Vec2
+/// Implements Sub for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -104,7 +104,7 @@ impl AddAssign for Vec2 {
 ///
 /// ```
 ///
-impl Sub for Vec2 {
+impl Sub for Vec2<f32> {
     type Output = Self;
 
     fn sub(self, rhs: Self) -> Self::Output {
@@ -116,7 +116,7 @@ impl Sub for Vec2 {
     }
 }
 
-/// Implements SubAssign for Vec2
+/// Implements SubAssign for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -126,13 +126,13 @@ impl Sub for Vec2 {
 ///
 /// ```
 ///
-impl SubAssign for Vec2 {
+impl SubAssign for Vec2<f32> {
     fn sub_assign(&mut self, rhs: Self) {
         *self = *self - rhs;
     }
 }
 
-/// Implements Mul for Vec2
+/// Implements Mul for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -142,7 +142,7 @@ impl SubAssign for Vec2 {
 ///
 /// ```
 ///
-impl Mul for Vec2 {
+impl Mul for Vec2<f32> {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
@@ -154,7 +154,7 @@ impl Mul for Vec2 {
     }
 }
 
-/// Implements MulAssign for Vec2
+/// Implements MulAssign for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -164,13 +164,13 @@ impl Mul for Vec2 {
 ///
 /// ```
 ///
-impl MulAssign for Vec2 {
+impl MulAssign for Vec2<f32> {
     fn mul_assign(&mut self, rhs: Self) {
         *self = *self * rhs;
     }
 }
 
-/// Implements Div for Vec2
+/// Implements Div for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -180,7 +180,7 @@ impl MulAssign for Vec2 {
 ///
 /// ```
 ///
-impl Div for Vec2 {
+impl Div for Vec2<f32> {
     type Output = Self;
 
     fn div(self, rhs: Self) -> Self::Output {
@@ -192,7 +192,7 @@ impl Div for Vec2 {
     }
 }
 
-/// Implements DivAssign for Vec2
+/// Implements DivAssign for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -202,13 +202,13 @@ impl Div for Vec2 {
 ///
 /// ```
 ///
-impl DivAssign for Vec2 {
+impl DivAssign for Vec2<f32> {
     fn div_assign(&mut self, rhs: Self) {
         *self = *self / rhs;
     }
 }
 
-/// Implements Rem for Vec2
+/// Implements Rem for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -218,7 +218,7 @@ impl DivAssign for Vec2 {
 ///
 /// ```
 ///
-impl Rem for Vec2 {
+impl Rem for Vec2<f32> {
     type Output = Self;
 
     fn rem(self, rhs: Self) -> Self::Output {
@@ -230,7 +230,7 @@ impl Rem for Vec2 {
     }
 }
 
-/// Implements RemAssign for Vec2
+/// Implements RemAssign for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -240,13 +240,13 @@ impl Rem for Vec2 {
 ///
 /// ```
 ///
-impl RemAssign for Vec2 {
+impl RemAssign for Vec2<f32> {
     fn rem_assign(&mut self, rhs: Self) {
         *self = *self % rhs;
     }
 }
 
-/// Implements PartialEq for Vec2
+/// Implements PartialEq for Vec2<f32>
 ///
 /// # Examples
 ///
@@ -256,7 +256,7 @@ impl RemAssign for Vec2 {
 ///
 /// ```
 ///
-impl PartialEq for Vec2 {
+impl PartialEq for Vec2<f32> {
     ///
     fn eq(&self, rhs: &Self) -> bool {
         if (*self - *rhs).x.abs() < 0.00001
@@ -279,7 +279,7 @@ impl PartialEq for Vec2 {
     }
 }
 
-impl Vec2 {
+impl Vec2<f32> {
     /*/// Generates a new instance of Vec2 initialized to zero and returns it
     ///
     /// # Examples
@@ -292,7 +292,7 @@ impl Vec2 {
     /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
     /// ```
     ///
-    pub fn new() -> Vec2 {
+    pub fn new() -> Vec2<f32> {
         Vec2 {
             x: 0.0,
             y: 0.0,
@@ -307,12 +307,12 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec2::new( &5.6, &7.2 );
+    /// let a = vector::Vec2::<f32>::new( &5.6, &7.2 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.00001 ) && ( ( a.y - 7.2 ) < 0.00001 ) );
     /// ```
     ///
-    pub fn new(x: &f32, y: &f32) -> Vec2 {
+    pub fn new(x: &f32, y: &f32) -> Vec2<f32> {
         let temp = Vec2 {
             x: *x,
             y: *y,
@@ -331,7 +331,7 @@ impl Vec2 {
     ///
     /// ```
     ///
-    pub fn create_random(range_x: &Range<f32>) -> Vec2 {
+    pub fn create_random(range_x: &Range<f32>) -> Vec2<f32> {
         let temp = Vec2 {
             x: rand::thread_rng().gen_range(range_x.clone()),
             y: rand::thread_rng().gen_range(range_x.clone()),
@@ -350,7 +350,7 @@ impl Vec2 {
     ///
     /// ```
     ///
-    pub fn create_random2(range_x: &Range<f32>, range_y: &Range<f32>) -> Vec2 {
+    pub fn create_random2(range_x: &Range<f32>, range_y: &Range<f32>) -> Vec2<f32> {
         let temp = Vec2 {
             x: rand::thread_rng().gen_range(range_x.clone()),
             y: rand::thread_rng().gen_range(range_y.clone()),
@@ -369,7 +369,7 @@ impl Vec2 {
     ///   
     /// ```
     ///
-    pub fn from_angle(theta: &f32, in_mag: &Option<f32>) -> Vec2 {
+    pub fn from_angle(theta: &f32, in_mag: &Option<f32>) -> Vec2<f32> {
         if let Some(mag) = in_mag {
             let mut temp = Vec2 {
                 x: *mag,
@@ -399,7 +399,7 @@ impl Vec2 {
     ///
     /// ```
     ///
-    pub fn from_rand_angle(range_x: &Range<f32>, mag: &Option<f32>) -> Vec2 {
+    pub fn from_rand_angle(range_x: &Range<f32>, mag: &Option<f32>) -> Vec2<f32> {
         let temp = Vec2::from_angle(&rand::thread_rng().gen_range(range_x.clone()), mag);
         temp
     }
@@ -412,12 +412,12 @@ impl Vec2 {
     /// use std::f32::consts::TAU;
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec2::random_unit( &( 0.0..TAU ) );
+    /// let mut a = vector::Vec2::<f32>::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( ( a.x - 1.0 ) < 0.00001 ) && ( a.y < TAU ) );
     /// ```
     ///
-    pub fn random_unit(range: &Range<f32>) -> Vec2 {
+    pub fn random_unit(range: &Range<f32>) -> Vec2<f32> {
         let temp = Vec2::from_angle(&rand::thread_rng().gen_range(range.clone()), &None);
         temp
     }
@@ -429,12 +429,12 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut b = vector::Vec2::unit();
+    /// let mut b = vector::Vec2::<f32>::unit();
     ///
     /// assert!( ( b.x - 1.0 < 0.00001 ) && ( b.y < 0.00001 ) );
     /// ```
     ///
-    pub fn unit() -> Vec2 {
+    pub fn unit() -> Vec2<f32> {
         let temp = Vec2::from_angle(&0.0, &Some(1.0));
         temp
     }
@@ -449,7 +449,7 @@ impl Vec2 {
     ///   
     /// ```
     ///
-    pub fn add(&mut self, rhs: &Vec2) {
+    pub fn add(&mut self, rhs: &Vec2<f32>) {
         self.swap_system(CARTESIAN);
         self.x += rhs.x;
         self.y += rhs.y;
@@ -462,15 +462,15 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec2::new( &5.6, &7.2 );
-    /// let mut b = vector::Vec2::unit();
+    /// let mut a = vector::Vec2::<f32>::new( &5.6, &7.2 );
+    /// let mut b = vector::Vec2::<f32>::unit();
     ///
     /// let angle = a.angle_between( &mut b );
     ///
     /// assert!( ( angle - 1.4731481877 ) < 0.00001 );
     /// ```
     ///
-    pub fn angle_between(&self, rhs: &Vec2) -> f32 {
+    pub fn angle_between(&self, rhs: &Vec2<f32>) -> f32 {
         let dot = self.dot(&rhs);
         (dot / (self.mag() * rhs.mag())).acos()
     }
@@ -517,7 +517,7 @@ impl Vec2 {
     ///
     /// ```
     ///
-    pub fn dist(&self, rhs: &Vec2) -> f32 {
+    pub fn dist(&self, rhs: &Vec2<f32>) -> f32 {
         ((self.x - rhs.x).powf(2.0)) + ((self.y - rhs.y).powf(2.0)).sqrt()
     }
 
@@ -531,7 +531,7 @@ impl Vec2 {
     ///   
     /// ```
     ///
-    pub fn dist_sq(&self, rhs: &Vec2) -> f32 {
+    pub fn dist_sq(&self, rhs: &Vec2<f32>) -> f32 {
         ((self.x - rhs.x).powf(2.0)) + ((self.y - rhs.y).powf(2.0))
     }
 
@@ -559,7 +559,7 @@ impl Vec2 {
     ///   
     /// ```
     ///
-    pub fn dot(&self, rhs: &Vec2) -> f32 {
+    pub fn dot(&self, rhs: &Vec2<f32>) -> f32 {
         (self.x * rhs.x) + (self.y * rhs.y)
     }
 
@@ -585,15 +585,15 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec2::new( &5.6, &7.2 );
-    /// let mut b = vector::Vec2::unit();
+    ///	let mut a = vector::Vec2::<f32>::new( &5.6, &7.2 );
+    /// let mut b = vector::Vec2::<f32>::unit();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
     /// assert!( ( ( a.x - 3.3 ) < 0.00001 ) && ( ( a.y - 3.6 ) < 0.00001 ) );
     /// ```
     ///
-    pub fn lerp(&mut self, rhs: &Vec2, amt: UnitF) {
+    pub fn lerp(&mut self, rhs: &Vec2<f32>, amt: UnitF) {
         self.swap_system(CARTESIAN);
         self.x = -(amt.value() - 1.0) * self.x + (amt.value() * rhs.x);
         self.y = -(amt.value() - 1.0) * self.y + (amt.value() * rhs.y);
@@ -756,7 +756,7 @@ impl Vec2 {
     ///   
     /// ```
     ///
-    pub fn sub(&mut self, rhs: &Vec2) {
+    pub fn sub(&mut self, rhs: &Vec2<f32>) {
         self.swap_system(CARTESIAN);
         self.x -= rhs.x;
         self.y -= rhs.y;
@@ -822,19 +822,19 @@ impl Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec3::default();
+/// let a = vector::Vec3::<f32>::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) && ( a.z < 0.00001 ) );
 /// ```
 ///
 #[derive(Copy, Clone, Debug)]
-pub struct Vec3 {
+pub struct Vec3<T> {
     ///
-    pub x: f32,
+    pub x: T,
     ///
-    pub y: f32,
+    pub y: T,
     ///
-    pub z: f32,
+    pub z: T,
     ///
     coord_system: CoordSystem,
 }
@@ -847,12 +847,12 @@ pub struct Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec3::default();
+/// let a = vector::Vec3::<f32>::default();
 ///
 /// assert!( ( a.x < 0.000001 ) && ( a.y < 0.000001 ) && ( a.z < 0.00001 ) );
 /// ```
 ///
-impl Default for Vec3 {
+impl Default for Vec3<f32> {
     fn default() -> Self {
         Self {
             x: 0.0,
@@ -873,7 +873,7 @@ impl Default for Vec3 {
 ///
 /// ```
 ///
-impl Add for Vec3 {
+impl Add for Vec3<f32> {
     type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
@@ -896,7 +896,7 @@ impl Add for Vec3 {
 ///
 /// ```
 ///
-impl AddAssign for Vec3 {
+impl AddAssign for Vec3<f32> {
     fn add_assign(&mut self, rhs: Self) {
         *self = *self + rhs;
     }
@@ -912,7 +912,7 @@ impl AddAssign for Vec3 {
 ///
 /// ```
 ///
-impl Sub for Vec3 {
+impl Sub for Vec3<f32> {
     type Output = Self;
 
     fn sub(self, rhs: Self) -> Self::Output {
@@ -935,7 +935,7 @@ impl Sub for Vec3 {
 ///
 /// ```
 ///
-impl SubAssign for Vec3 {
+impl SubAssign for Vec3<f32> {
     fn sub_assign(&mut self, rhs: Self) {
         *self = *self - rhs;
     }
@@ -951,7 +951,7 @@ impl SubAssign for Vec3 {
 ///
 /// ```
 ///
-impl Mul for Vec3 {
+impl Mul for Vec3<f32> {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
@@ -974,7 +974,7 @@ impl Mul for Vec3 {
 ///
 /// ```
 ///
-impl MulAssign for Vec3 {
+impl MulAssign for Vec3<f32> {
     fn mul_assign(&mut self, rhs: Self) {
         *self = *self * rhs;
     }
@@ -990,7 +990,7 @@ impl MulAssign for Vec3 {
 ///
 /// ```
 ///
-impl Div for Vec3 {
+impl Div for Vec3<f32> {
     type Output = Self;
 
     fn div(self, rhs: Self) -> Self::Output {
@@ -1010,16 +1010,16 @@ impl Div for Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec3::new( &100.0, &50.0, &30.0 );
-/// let y = vector::Vec3::new( &2.0, &5.0 , &3.0 );
-/// let z = vector::Vec3::new( &50.0, &10.0, &10.0 );
+/// let mut x = vector::Vec3::<f32>::new( &100.0, &50.0, &30.0 );
+/// let y = vector::Vec3::<f32>::new( &2.0, &5.0 , &3.0 );
+/// let z = vector::Vec3::<f32>::new( &50.0, &10.0, &10.0 );
 ///
 /// x /= y;
 /// 
 /// assert_eq!( x, z );
 /// ```
 ///
-impl DivAssign for Vec3 {
+impl DivAssign for Vec3<f32> {
     fn div_assign(&mut self, rhs: Self) {
         *self = *self / rhs;
     }
@@ -1035,7 +1035,7 @@ impl DivAssign for Vec3 {
 ///
 /// ```
 ///
-impl Rem for Vec3 {
+impl Rem for Vec3<f32> {
     type Output = Self;
 
     fn rem(self, rhs: Self) -> Self::Output {
@@ -1058,7 +1058,7 @@ impl Rem for Vec3 {
 ///
 /// ```
 ///
-impl RemAssign for Vec3 {
+impl RemAssign for Vec3<f32> {
     fn rem_assign(&mut self, rhs: Self) {
         *self = *self % rhs;
     }
@@ -1074,7 +1074,7 @@ impl RemAssign for Vec3 {
 ///
 /// ```
 ///
-impl PartialEq for Vec3 {
+impl PartialEq for Vec3<f32> {
     ///
     fn eq(&self, rhs: &Self) -> bool {
         let temp = *self - *rhs;
@@ -1100,7 +1100,7 @@ impl PartialEq for Vec3 {
     }
 }
 
-impl Vec3 {
+impl Vec3<f32> {
     /*/// Generates a new instance of Vec3 initialized to zero and returns it
     ///
     /// # Examples
@@ -1129,12 +1129,12 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec3::new( &5.6, &7.2, &6.8 );
+    /// let a = vector::Vec3::<f32>::new( &5.6, &7.2, &6.8 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.000001 ) && ( ( a.y - 7.2 ) < 0.000001 ) && ( ( a.z - 6.8 ) < 0.00001 ) );
     /// ```
     ///
-    pub fn new(x: &f32, y: &f32, z: &f32) -> Vec3 {
+    pub fn new(x: &f32, y: &f32, z: &f32) -> Vec3<f32> {
         let temp = Vec3 {
             x: *x,
             y: *y,
@@ -1154,7 +1154,7 @@ impl Vec3 {
     ///
     /// ```
     ///
-    pub fn create_random(range_x: &Range<f32>) -> Vec3 {
+    pub fn create_random(range_x: &Range<f32>) -> Vec3<f32> {
         let temp = Vec3 {
             x: rand::thread_rng().gen_range(range_x.clone()),
             y: rand::thread_rng().gen_range(range_x.clone()),
@@ -1178,7 +1178,7 @@ impl Vec3 {
         range_x: &Range<f32>,
         range_y: &Range<f32>,
         range_z: &Range<f32>,
-    ) -> Vec3 {
+    ) -> Vec3<f32> {
         let temp = Vec3 {
             x: rand::thread_rng().gen_range(range_x.clone()),
             y: rand::thread_rng().gen_range(range_y.clone()),
@@ -1198,7 +1198,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn from_angle(theta: &f32, phi: &f32, in_mag: &Option<f32>) -> Vec3 {
+    pub fn from_angle(theta: &f32, phi: &f32, in_mag: &Option<f32>) -> Vec3<f32> {
         if let Some(mag) = in_mag {
             let mut temp = Vec3 {
                 x: *mag,
@@ -1230,7 +1230,7 @@ impl Vec3 {
     ///
     /// ```
     ///
-    pub fn from_rand_angle(range: &Range<f32>, mag: &Option<f32>) -> Vec3 {
+    pub fn from_rand_angle(range: &Range<f32>, mag: &Option<f32>) -> Vec3<f32> {
         let temp = Vec3::from_angle(
             &rand::thread_rng().gen_range(range.clone()),
             &rand::thread_rng().gen_range(range.clone()),
@@ -1247,12 +1247,12 @@ impl Vec3 {
     /// use std::f32::consts::TAU;
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec3::random_unit( &( 0.0..TAU ) );
+    /// let mut a = vector::Vec3::<f32>::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( a.x - 1.0 < 0.00001 ) && ( a.y < TAU ) && ( a.z < TAU ) );
     /// ```
     ///
-    pub fn random_unit(range: &Range<f32>) -> Vec3 {
+    pub fn random_unit(range: &Range<f32>) -> Vec3<f32> {
         let temp = Vec3::from_angle(
             &rand::thread_rng().gen_range(range.clone()),
             &rand::thread_rng().gen_range(range.clone()),
@@ -1268,12 +1268,12 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut b = vector::Vec3::unit();
+    /// let mut b = vector::Vec3::<f32>::unit();
     ///
     /// assert!( ( b.x < 0.00001 ) && ( b.y < 0.00001 ) && ( b.z - 1.0 < 0.0001 ) );
     /// ```
     ///
-    pub fn unit() -> Vec3 {
+    pub fn unit() -> Vec3<f32> {
         let temp = Vec3::from_angle(&0.0, &0.0, &Some(1.0));
         temp
     }
@@ -1288,7 +1288,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn add(&mut self, rhs: &Vec3) {
+    pub fn add(&mut self, rhs: &Vec3<f32>) {
         self.swap_system(CARTESIAN);
         self.x += rhs.x;
         self.y += rhs.y;
@@ -1303,7 +1303,7 @@ impl Vec3 {
     ///
     /// ```
     ///
-    pub fn angle_between(&self, rhs: &Vec3) -> f32 {
+    pub fn angle_between(&self, rhs: &Vec3<f32>) -> f32 {
         let dot = self.dot(&rhs);
         (dot / (self.mag() * rhs.mag())).acos()
     }
@@ -1334,7 +1334,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn cross(&mut self, rhs: &Vec3) -> Vec3 {
+    pub fn cross(&mut self, rhs: &Vec3<f32>) -> Vec3<f32> {
         self.swap_system(CARTESIAN);
 
         let x = (self.y * rhs.z) - (self.z * rhs.y);
@@ -1359,7 +1359,7 @@ impl Vec3 {
     ///
     /// ```
     ///
-    pub fn dist(&self, rhs: &Vec3) -> f32 {
+    pub fn dist(&self, rhs: &Vec3<f32>) -> f32 {
         let distance = ((self.x - rhs.x).powf(2.0))
             + ((self.y - rhs.y).powf(2.0))
             + ((self.z - rhs.z).powf(2.0));
@@ -1377,7 +1377,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn dist_sq(&self, rhs: &Vec3) -> f32 {
+    pub fn dist_sq(&self, rhs: &Vec3<f32>) -> f32 {
         let distance = ((self.x - rhs.x).powf(2.0))
             + ((self.y - rhs.y).powf(2.0))
             + ((self.z - rhs.z).powf(2.0));
@@ -1409,7 +1409,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn dot(&self, rhs: &Vec3) -> f32 {
+    pub fn dot(&self, rhs: &Vec3<f32>) -> f32 {
         (self.x * rhs.x) + (self.y * rhs.y) + (self.z * rhs.z)
     }
 
@@ -1436,15 +1436,15 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec3::new( &5.6, &7.2, &6.8 );
-    /// let mut b = vector::Vec3::default();
+    ///	let mut a = vector::Vec3::<f32>::new( &5.6, &7.2, &6.8 );
+    /// let mut b = vector::Vec3::<f32>::default();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
     /// assert!( ( ( a.x - 2.8 ) < 0.00001 ) && ( ( a.y - 3.6 ) < 0.00001 ) && ( a.z - 3.4 ) < 0.00001 );
     /// ```
     ///
-    pub fn lerp(&mut self, rhs: &Vec3, amt: UnitF) {
+    pub fn lerp(&mut self, rhs: &Vec3<f32>, amt: UnitF) {
         self.swap_system(CARTESIAN);
 
         self.x = -(amt.value() - 1.0) * self.x + (amt.value() * rhs.x);
@@ -1644,7 +1644,7 @@ impl Vec3 {
     ///   
     /// ```
     ///
-    pub fn sub(&mut self, rhs: &Vec3) {
+    pub fn sub(&mut self, rhs: &Vec3<f32>) {
         self.swap_system(CARTESIAN);
         self.x -= rhs.x;
         self.y -= rhs.y;
