@@ -1,10 +1,10 @@
 use miscmath::prelude::*;
 
 fn main() {
-    let x = vector::Vec2::unit();
+    let x = Vec2::unit();
     dbg!(&x);
 
-    let y = vector::Vec2::new(&0.5, &7.2);
+    let y = Vec2::new(&0.5, &7.2);
     dbg!(&y);
  
     dbg!(y == y);
