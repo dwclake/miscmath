@@ -13,7 +13,7 @@ use std::ops::{Add, Div, Mul, Range, Sub, AddAssign, SubAssign, MulAssign, DivAs
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec2::default();
+/// let a = Vec2::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
@@ -36,7 +36,7 @@ pub struct Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec2::default();
+/// let a = Vec2::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
 /// ```
@@ -58,8 +58,8 @@ impl Default for Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec2::default();
-/// let y = vector::Vec2::new( &5.0, &7.0);
+/// let mut x = Vec2::default();
+/// let y = Vec2::new( &5.0, &7.0);
 /// x += y;
 ///
 /// assert_eq!(x, y);
@@ -287,7 +287,7 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec2::new();
+    /// let a = Vec2::new();
     ///
     /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) );
     /// ```
@@ -307,7 +307,7 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec2::new( &5.6, &7.2 );
+    /// let a = Vec2::new( &5.6, &7.2 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.00001 ) && ( ( a.y - 7.2 ) < 0.00001 ) );
     /// ```
@@ -412,7 +412,7 @@ impl Vec2 {
     /// use std::f32::consts::TAU;
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec2::random_unit( &( 0.0..TAU ) );
+    /// let mut a = Vec2::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( ( a.x - 1.0 ) < 0.00001 ) && ( a.y < TAU ) );
     /// ```
@@ -429,7 +429,7 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut b = vector::Vec2::unit();
+    /// let mut b = Vec2::unit();
     ///
     /// assert!( ( b.x - 1.0 < 0.00001 ) && ( b.y < 0.00001 ) );
     /// ```
@@ -462,8 +462,8 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec2::new( &5.6, &7.2 );
-    /// let mut b = vector::Vec2::unit();
+    /// let mut a = Vec2::new( &5.6, &7.2 );
+    /// let mut b = Vec2::unit();
     ///
     /// let angle = a.angle_between( &mut b );
     ///
@@ -577,6 +577,21 @@ impl Vec2 {
         self.x /= rhs;
         self.y /= rhs;
     }
+    
+    /// Divides the components of self by a Vec2 rhs
+    ///
+    /// # Examples
+    ///
+    /// ```
+    ///
+    ///
+    ///
+    /// ```
+    ///
+    pub fn div2(&mut self, rhs: &Vec2) {
+        self.x /= rhs.x;
+        self.y /= rhs.y;
+    }
 
     /// Linearly interpolates between self and a passed in Vec2
     ///
@@ -585,8 +600,8 @@ impl Vec2 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec2::new( &5.6, &7.2 );
-    /// let mut b = vector::Vec2::unit();
+    ///	let mut a = Vec2::new( &5.6, &7.2 );
+    /// let mut b = Vec2::unit();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
@@ -641,6 +656,22 @@ impl Vec2 {
         self.swap_system(CARTESIAN);
         self.x *= rhs;
         self.y *= rhs;
+    }
+    
+    /// Multiplies the components of self by a Vec2 rhs
+    ///
+    /// # Examples
+    ///
+    /// ```
+    ///
+    ///
+    ///
+    /// ```
+    ///
+    pub fn mult2(&mut self, rhs: &Vec2) {
+        self.swap_system(CARTESIAN);
+        self.x *= rhs.x;
+        self.y *= rhs.y;
     }
 
     /// Normalizes the magnitude of self to 1, angle is unchanged
@@ -822,7 +853,7 @@ impl Vec2 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec3::default();
+/// let a = Vec3::default();
 ///
 /// assert!( ( a.x < 0.00001 ) && ( a.y < 0.00001 ) && ( a.z < 0.00001 ) );
 /// ```
@@ -847,7 +878,7 @@ pub struct Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 ///
-/// let a = vector::Vec3::default();
+/// let a = Vec3::default();
 ///
 /// assert!( ( a.x < 0.000001 ) && ( a.y < 0.000001 ) && ( a.z < 0.00001 ) );
 /// ```
@@ -1010,9 +1041,9 @@ impl Div for Vec3 {
 /// ```
 /// use miscmath::prelude::*;
 /// 
-/// let mut x = vector::Vec3::new( &100.0, &50.0, &30.0 );
-/// let y = vector::Vec3::new( &2.0, &5.0 , &3.0 );
-/// let z = vector::Vec3::new( &50.0, &10.0, &10.0 );
+/// let mut x = Vec3::new( &100.0, &50.0, &30.0 );
+/// let y = Vec3::new( &2.0, &5.0 , &3.0 );
+/// let z = Vec3::new( &50.0, &10.0, &10.0 );
 ///
 /// x /= y;
 /// 
@@ -1108,7 +1139,7 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec3::new();
+    /// let a = Vec3::new();
     ///
     /// assert!( ( a.x < 0.000001 ) && ( a.y < 0.000001 ) && ( a.z < 0.00001 ) );
     /// ```
@@ -1129,7 +1160,7 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let a = vector::Vec3::new( &5.6, &7.2, &6.8 );
+    /// let a = Vec3::new( &5.6, &7.2, &6.8 );
     ///
     /// assert!( ( ( a.x - 5.6 ) < 0.000001 ) && ( ( a.y - 7.2 ) < 0.000001 ) && ( ( a.z - 6.8 ) < 0.00001 ) );
     /// ```
@@ -1247,7 +1278,7 @@ impl Vec3 {
     /// use std::f32::consts::TAU;
     /// use miscmath::prelude::*;
     ///
-    /// let mut a = vector::Vec3::random_unit( &( 0.0..TAU ) );
+    /// let mut a = Vec3::random_unit( &( 0.0..TAU ) );
     ///
     /// assert!( ( a.x - 1.0 < 0.00001 ) && ( a.y < TAU ) && ( a.z < TAU ) );
     /// ```
@@ -1268,7 +1299,7 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    /// let mut b = vector::Vec3::unit();
+    /// let mut b = Vec3::unit();
     ///
     /// assert!( ( b.x < 0.00001 ) && ( b.y < 0.00001 ) && ( b.z - 1.0 < 0.0001 ) );
     /// ```
@@ -1428,6 +1459,22 @@ impl Vec3 {
         self.y /= rhs;
         self.z /= rhs;
     }
+    
+    /// Divides the components of self by a Vec3 rhs
+    ///
+    /// # Examples
+    ///
+    /// ```
+    ///
+    ///
+    ///
+    /// ```
+    ///
+    pub fn div2(&mut self, rhs: &Vec3) {
+        self.x /= rhs.x;
+        self.y /= rhs.y;
+        self.z /= rhs.z;
+    }
 
     /// Linearly interpolates between self and a passed in Vec3
     ///
@@ -1436,8 +1483,8 @@ impl Vec3 {
     /// ```
     /// use miscmath::prelude::*;
     ///
-    ///	let mut a = vector::Vec3::new( &5.6, &7.2, &6.8 );
-    /// let mut b = vector::Vec3::default();
+    ///	let mut a = Vec3::new( &5.6, &7.2, &6.8 );
+    /// let mut b = Vec3::default();
     ///
     /// a.lerp( &b, UnitF::new( 0.5 ) );
     ///
@@ -1495,6 +1542,23 @@ impl Vec3 {
         self.x *= rhs;
         self.y *= rhs;
         self.z *= rhs;
+    }
+    
+    /// Multiplies the components of self by a Vec3 rhs
+    ///
+    /// # Examples
+    ///
+    /// ```
+    ///
+    ///
+    ///
+    /// ```
+    ///
+    pub fn mult2(&mut self, rhs: &Vec3) {
+        self.swap_system(CARTESIAN);
+        self.x *= rhs.x;
+        self.y *= rhs.y;
+        self.z *= rhs.z;
     }
 
     /// Normalizes the magnitude of self to 1, angle is unchanged
